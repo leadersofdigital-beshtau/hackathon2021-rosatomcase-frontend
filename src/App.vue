@@ -5,9 +5,13 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import baseApi from './http/baseApi';
 
 export default {
   name: 'App',
+  mounted() {
+    baseApi.get('users/123');
+  },
   components: {
     HelloWorld
   }

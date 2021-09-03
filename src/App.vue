@@ -1,30 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app">
+    <div class="app__header">
+      <Header></Header>
+    </div>
+    <main class="app__main">
+      <router-view/>
+    </main>
+    <div class="app__footer">
+      <Footer></Footer>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import baseApi from './http/baseApi';
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default {
-  name: 'App',
-  mounted() {
-    baseApi.get('users/123');
-  },
+  name: 'Home',
   components: {
-    HelloWorld
+    Footer,
+    Header
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+
 </style>

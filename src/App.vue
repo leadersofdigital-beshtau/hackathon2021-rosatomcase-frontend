@@ -1,11 +1,13 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Header></Header>
+  <div>Content</div>
+  <Footer></Footer>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import baseApi from './http/baseApi';
+import Header from './components/Header'
+import Footer from './components/Footer'
+import baseApi from './http/baseApi'
 
 export default {
   name: 'App',
@@ -13,7 +15,8 @@ export default {
     baseApi.get('users/123');
   },
   components: {
-    HelloWorld
+    Footer,
+    Header
   }
 }
 </script>

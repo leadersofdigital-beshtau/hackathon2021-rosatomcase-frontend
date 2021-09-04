@@ -41,7 +41,7 @@ export default {
 <style lang="scss">
 .dashboard {
     &__title {
-        font-size: 38px;
+        font-size: 45px;
         margin-bottom: 60px;
     }
     &__grid {
@@ -56,7 +56,7 @@ export default {
         height: 100vh;
         max-width: 100%;
         min-width: 290px;
-        background: #ffffff;
+        background: #f9f9fd;
         box-shadow: 0 3px 12px 5px rgba(0, 0, 0, 0.05);
     }
 

@@ -1,9 +1,7 @@
 <template>
     <div class="tasks">
         <div class="tasks__search-form">
-            <SearchForm
-            placeholder="Введите запрос"
-            ></SearchForm>
+            <SearchForm placeholder="Введите запрос"></SearchForm>
         </div>
         <div class="tasks__actions">
             <div class="tasks__actions-item">
@@ -134,7 +132,13 @@
             </div>
             <div class="tasks__stats-grid">
                 <div class="tasks__stats-chart">
-                    <vue3-chart-js v-bind="{ ...doughnutChart }" />
+                    <vue3-chart-js
+                        :id="doughnutChart.id"
+                        ref="chartRef"
+                        :type="doughnutChart.type"
+                        :data="doughnutChart.data"
+                        :options="doughnutChart.options"
+                    ></vue3-chart-js>
                 </div>
                 <div class="tasks__stats-detail">
                     <div class="tasks__stats-chart-info">
@@ -148,7 +152,7 @@
                                 результатам закупки
                             </div>
                             <div class="tasks__stats-chart-row-value">
-                                2385
+                                {{ chartData[0] }}
                             </div>
                         </div>
                         <div class="tasks__stats-chart-row">
@@ -161,7 +165,7 @@
                                 единственного поставщика
                             </div>
                             <div class="tasks__stats-chart-row-value">
-                                505
+                                {{ chartData[1] }}
                             </div>
                         </div>
                         <div class="tasks__stats-chart-row">
@@ -174,7 +178,7 @@
                                 результатам закупки
                             </div>
                             <div class="tasks__stats-chart-row-value">
-                                1 806 147 533,00
+                                {{ chartData[2] }}
                             </div>
                         </div>
                         <div class="tasks__stats-chart-row">
@@ -187,7 +191,7 @@
                                 несостоявшимися
                             </div>
                             <div class="tasks__stats-chart-row-value">
-                                0
+                                {{ chartData[3] }}
                             </div>
                         </div>
                     </div>
@@ -200,6 +204,8 @@
 <script>
 import SearchForm from "../components/SearchForm";
 import TaskPreview from "../components/TaskPreview";
+
+import { ref } from "vue";
 
 import { ru } from "date-fns/locale";
 import Datepicker from "vue3-datepicker";
@@ -215,21 +221,44 @@ export default {
         Vue3ChartJs
     },
     setup() {
+        const chartRef = ref(null);
+
+        const chartData = [
+            Math.floor(Math.random() * 500),
+            Math.floor(Math.random() * 1000),
+            Math.floor(Math.random() * 500),
+            Math.floor(Math.random() * 800)
+        ];
+
         const doughnutChart = {
+            id: "doughnut",
             type: "doughnut",
             data: {
                 datasets: [
                     {
                         backgroundColor: ["#3675B3", "#193478", "#131F3D"],
-                        data: [2385, 905, 4243],
-                        borderWidth: 0,
+                        data: chartData,
+                        borderWidth: 0
                     }
                 ]
             }
         };
 
+        const updateDoughnutChart = () => {
+            doughnutChart.data.datasets = [
+                {
+                    backgroundColor: ["#3675B3", "#193478", "#131F3D"],
+                    data: chartData
+                }
+            ];
+            chartRef.value.update(250);
+        };
+
         return {
-            doughnutChart
+            doughnutChart,
+            updateDoughnutChart,
+            chartRef,
+            chartData
         };
     },
     data() {
@@ -287,6 +316,14 @@ export default {
         selectItem(text) {
             this.selectedText = text;
             this.isSelectActive = false;
+
+            this.chartData = [
+                Math.floor(Math.random() * 500),
+                Math.floor(Math.random() * 1000),
+                Math.floor(Math.random() * 500),
+                Math.floor(Math.random() * 800)
+            ];
+            this.updateDoughnutChart();
         }
     }
 };
@@ -298,7 +335,7 @@ export default {
     --vdp-hover-bg-color: #678ddf;
 
     &__title {
-        font-size: 28px;
+        font-size: 34px;
         margin-bottom: 30px;
     }
 
@@ -350,7 +387,7 @@ export default {
                 color: #193478;
                 font-size: 0.7em;
                 margin-left: 15px;
-                transition: ease .3s transform;
+                transition: ease 0.3s transform;
             }
         }
         &-list {

@@ -7,7 +7,7 @@
                 <!--                    <i class="icon-angle-down"></i>-->
                 <!--                </button>-->
                 <div class="search-form__container">
-                    <input type="text" class="search-form__input">
+                    <input :placeholder="placeholder" type="text" class="search-form__input" />
                     <button class="search-form__submit-button">
                         <i class="icon-search"></i>
                     </button>
@@ -19,29 +19,29 @@
 
 <script>
 export default {
-    name: 'SearchForm',
-    props: {}
-}
+    name: "SearchForm",
+    props: {
+        placeholder: {
+            type: String
+        }
+    }
+};
 </script>
 
 <style lang="scss" scoped>
 .search-form {
-    &__title {
-
-    }
-
     &__input {
         background: #ffffff;
-        box-shadow: 0 3px 12px 5px rgba(0, 0, 0, .05);
+        box-shadow: 0 3px 12px 5px rgba(0, 0, 0, 0.05);
         border-radius: 10px;
         width: 100%;
         padding: 18px 50px 18px 25px;
         font-size: 24px;
-        border: 2px solid #1C3B80;
+        border: 2px solid #1c3b80;
         outline: none;
-        transition: ease box-shadow .3s;
+        transition: ease box-shadow 0.3s;
         &:focus {
-            box-shadow: 0 5px 16px 5px rgba(0, 0, 0, .15);
+            box-shadow: 0 5px 16px 5px rgba(0, 0, 0, 0.15);
         }
     }
 

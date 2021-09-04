@@ -24,7 +24,8 @@ const routes = [
         name: "Supply",
         component: Supply,
         meta: {
-            key: 2
+            key: 2,
+            title: 'Поставщик',
         }
     },
     {
@@ -32,7 +33,8 @@ const routes = [
         name: "Tasks",
         component: Tasks,
         meta: {
-            key: 3
+            key: 3,
+            title: 'Задачи',
         }
     },
     {

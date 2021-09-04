@@ -1,7 +1,9 @@
 <template>
     <div class="tasks">
         <div class="tasks__search-form">
-            <SearchForm></SearchForm>
+            <SearchForm
+            placeholder="Введите запрос"
+            ></SearchForm>
         </div>
         <div class="tasks__actions">
             <div class="tasks__actions-item">
@@ -44,7 +46,7 @@
         </div>
         <section class="tasks__tasks">
             <h2 class="tasks__title">
-                Задания
+                Текущие задания
             </h2>
             <div class="tasks__tasks-list">
                 <div
@@ -131,8 +133,9 @@
                 </div>
             </div>
             <div class="tasks__stats-grid">
-                <!--                        <DoughnutChart :chartData="testData" />-->
-                <div class="tasks__stats-chart"></div>
+                <div class="tasks__stats-chart">
+                    <vue3-chart-js v-bind="{ ...doughnutChart }" />
+                </div>
                 <div class="tasks__stats-detail">
                     <div class="tasks__stats-chart-info">
                         <div class="tasks__stats-chart-row">
@@ -197,27 +200,37 @@
 <script>
 import SearchForm from "../components/SearchForm";
 import TaskPreview from "../components/TaskPreview";
+
 import { ru } from "date-fns/locale";
-
-// import { DoughnutChart } from 'vue-chart-3';
-
 import Datepicker from "vue3-datepicker";
+
+import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
 
 export default {
     name: "Dashboard",
-    // setup() {
-    //     const testData = {
-    //         labels: ['Paris', 'Nîmes', 'Toulon', 'Perpignan', 'Autre'],
-    //         datasets: [
-    //             {
-    //                 data: [30, 40, 60, 70, 5],
-    //                 backgroundColor: ['#77CEFF', '#0079AF', '#123E6B', '#97B0C4', '#A5C8ED'],
-    //             },
-    //         ],
-    //     };
-    //
-    //     return { testData };
-    // },
+    components: {
+        SearchForm,
+        TaskPreview,
+        Datepicker,
+        Vue3ChartJs
+    },
+    setup() {
+        const doughnutChart = {
+            type: "doughnut",
+            data: {
+                datasets: [
+                    {
+                        backgroundColor: ["#3675B3", "#193478", "#131F3D"],
+                        data: [2385, 905, 4243]
+                    }
+                ]
+            }
+        };
+
+        return {
+            doughnutChart
+        };
+    },
     data() {
         return {
             datepickerDate: new Date(),
@@ -274,12 +287,6 @@ export default {
             this.selectedText = text;
             this.isSelectActive = false;
         }
-    },
-    components: {
-        SearchForm,
-        TaskPreview,
-        Datepicker
-        // DoughnutChart
     }
 };
 </script>
@@ -435,8 +442,6 @@ export default {
         &-chart {
             width: 350px;
             height: 350px;
-            border-radius: 50%;
-            background-color: #07173e;
             margin-right: 60px;
         }
     }
@@ -479,6 +484,7 @@ export default {
         }
 
         &-icon {
+            pointer-events: none;
             color: #193478;
             right: 15px;
             top: 50%;

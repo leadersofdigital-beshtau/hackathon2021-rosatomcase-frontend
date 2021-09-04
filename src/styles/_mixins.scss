@@ -1,0 +1,11 @@
+@mixin font-face($font-family, $url, $weight, $style) {
+  @font-face {
+    font-family: "#{$font-family}";
+    src: url("../assets/fonts/ProximaNova/#{$url}.eot?") format("eot"),
+     url("../assets/fonts/ProximaNova/#{$url}.woff") format("woff"),
+     url("../assets/fonts/ProximaNova/#{$url}.ttf") format("typeof");
+    font-weight: #{$weight};
+    font-style: $style;
+    font-display: swap;
+  }
+}

@@ -72,4 +72,9 @@ i {
     content: $icon-star-person; 
   }
 }
+.icon-equalizer {
+  &:before {
+    content: $icon-equalizer; 
+  }
+}
 

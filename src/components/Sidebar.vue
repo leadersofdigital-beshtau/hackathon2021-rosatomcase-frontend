@@ -1,0 +1,139 @@
+<template>
+    <aside class="sidebar">
+        <div class="sidebar__logo">
+            <img src="" alt="" class="sidebar__image">
+        </div>
+        <div class="sidebar__profile">
+            <button class="sidebar__profile-button"><i class="icon-settings"></i></button>
+            <div class="sidebar__profile-main">
+                <div class="sidebar__profile-image">
+                    <img src="" alt="">
+                </div>
+                <div class="sidebar__profile-name">Фамилия Имя</div>
+            </div>
+            <button class="sidebar__profile-button"><i class="icon-notifications"></i></button>
+        </div>
+        <nav class="sidebar__nav">
+            <ul class="sidebar__list">
+                <li v-for="item in menuItems" :key="item.id" class="sidebar__list-item">
+                    <router-link class="sidebar__list-link" :to="item.to">
+                        <i class="sidebar__list-icon" :class="getMenuItemIconClass(item.icon)"></i>
+                        <span class="sidebar__list-text">{{ item.title }}</span>
+                    </router-link>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+</template>
+
+<script>
+export default {
+    name: 'Dashboard',
+    data() {
+        return {
+            menuItems: [
+                {
+                    id: 'mailing',
+                    title: 'Рассылка',
+                    icon: 'mailing',
+                    to: '/mailing',
+                },
+                {
+                    id: 'provider',
+                    title: 'Поставщик',
+                    icon: 'star-person',
+                    to: '/provider',
+                },
+                {
+                    id: 'tasks',
+                    title: 'Задания',
+                    icon: 'rocket',
+                    to: '/search',
+                },
+                {
+                    id: 'reports',
+                    title: 'Отчеты',
+                    icon: 'doc-edit',
+                    to: '/reports',
+                },
+                {
+                    id: 'search',
+                    title: 'История поиска',
+                    icon: 'doc-search',
+                    to: '/search',
+                },
+                {
+                    id: 'discussions',
+                    title: 'Обсуждения',
+                    icon: 'discussion',
+                    to: '/discussions',
+                },
+                {
+                    id: 'education',
+                    title: 'Обучение',
+                    icon: 'education',
+                    to: '/education',
+                },
+                {
+                    id: 'docs',
+                    title: 'Документы',
+                    icon: 'docs',
+                    to: '/docs',
+                },
+                {
+                    id: 'subscriptions',
+                    title: 'Мои подписки',
+                    icon: 'fav-star',
+                    to: '/subscriptions',
+                },
+            ],
+        }
+    },
+    components: {},
+    methods: {
+        getMenuItemIconClass: function (icon) {
+            return 'icon-' + icon
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+.sidebar {
+    background-color: #F8F7FD;
+
+    &__list {
+        &-item {
+            margin-bottom: 9px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        &-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            padding: 15px 25px 15px 13px;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 18px;
+            line-height: 22px;
+            color: #000000;
+
+            &:hover {
+                background-color: #eeeeee;
+            }
+        }
+
+        &-icon {
+            font-size: 1.35em;
+            margin-right: .5em;
+            color: #193478;
+        }
+    }
+}
+</style>

@@ -3,7 +3,8 @@
     <nav class="header__nav">
       <ul class="header__list">
         <router-link class="header__list-item" to="/">Home</router-link> |
-        <router-link class="header__list-item" to="/about">About</router-link>
+        <router-link class="header__list-item" to="/about">About</router-link> |
+        <router-link class="header__list-item" to="/supply">Supply</router-link>
       </ul>
     </nav>
   </header>
@@ -11,8 +12,12 @@
 
 <script>
 export default {
+  props: {
+    page: {
+      type: Number,
+    },
+  },
   name: 'Header',
-  props: {}
 }
 </script>
 

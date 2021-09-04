@@ -1,13 +1,13 @@
 <template>
   <div class="app">
     <div class="app__header">
-      <Header></Header>
+      <Header :page="key"></Header>
     </div>
     <main class="app__main">
-      <router-view/>
+      <router-view :key="key"/>
     </main>
     <div class="app__footer">
-      <Footer></Footer>
+      <Footer :page="key"></Footer>
     </div>
   </div>
 </template>
@@ -17,14 +17,20 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     Footer,
-    Header
-  }
-}
+    Header,
+  },
+  computed: {
+    key() {
+      return this.$route.meta.key !== undefined
+        ? this.$route.meta.key
+        : this.$route;
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-
 </style>

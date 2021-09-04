@@ -13,13 +13,13 @@
                     <i class="icon-gear"></i>
                 </button>
                 <div class="sidebar__profile-image">
-                    <img src="@/assets/avatar.jpeg" alt="Фамилия Имя" />
+                    <img src="@/assets/avatar.jpeg" alt="{{ user.name }}" />
                 </div>
                 <button class="sidebar__profile-button">
                     <i class="icon-bell"></i>
                 </button>
             </div>
-            <div class="sidebar__profile-name">Фамилия Имя</div>
+            <div class="sidebar__profile-name">{{ user.name }}</div>
         </div>
         <nav class="sidebar__nav">
             <ul class="sidebar__list">
@@ -50,6 +50,9 @@ export default {
     name: "Dashboard",
     data() {
         return {
+            user: {
+                name: 'Пётр Иванов'
+            },
             menuItems: [
                 {
                     id: "mailing",

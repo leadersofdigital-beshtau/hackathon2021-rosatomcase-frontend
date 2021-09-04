@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import Home from "../views/Home.vue";
 import Supply from "../views/Provider.vue";
 import Tasks from "../views/Tasks";
 import Mailing from "../views/Mailing";
@@ -12,14 +11,6 @@ import Docs from "../views/Docs";
 import Subscriptions from "../views/Subscriptions";
 
 const routes = [
-    {
-        path: "/",
-        name: "Home",
-        component: Home,
-        meta: {
-            key: 0
-        }
-    },
     {
         path: "/dashboard/mailing",
         name: "Mailing",

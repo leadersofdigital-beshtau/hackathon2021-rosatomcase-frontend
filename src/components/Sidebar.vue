@@ -62,7 +62,7 @@ export default {
                 },
                 {
                     id: "provider",
-                    title: "Поставщик",
+                    title: "Поставщики",
                     icon: "star-person",
                     to: "/dashboard/supply"
                 },

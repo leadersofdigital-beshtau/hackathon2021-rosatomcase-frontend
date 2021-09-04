@@ -56,6 +56,8 @@
                     <div class="tasks__stats-datepicker-container">
                         <Datepicker
                             class="tasks__stats-datepicker-input"
+                            :inputFormat="datepickerFormat"
+                            :locale="datepickerLocale"
                             v-model="datepickerDate"
                         />
                         <i
@@ -183,13 +185,14 @@
 <script>
 import SearchForm from "../components/SearchForm";
 import TaskPreview from "../components/TaskPreview";
+import { ru } from "date-fns/locale";
 
 // import { DoughnutChart } from 'vue-chart-3';
 
-import Datepicker from 'vue3-datepicker'
+import Datepicker from "vue3-datepicker";
 
 export default {
-    name: 'Dashboard',
+    name: "Dashboard",
     // setup() {
     //     const testData = {
     //         labels: ['Paris', 'Nîmes', 'Toulon', 'Perpignan', 'Autre'],
@@ -206,51 +209,53 @@ export default {
     data() {
         return {
             datepickerDate: new Date(),
+            datepickerLocale: ru,
+            datepickerFormat: "dd.mm.yyyy",
             isSelectActive: false,
-            selectedText: 'За месяц',
+            selectedText: "За месяц",
             tasks: [
                 {
                     id: 1,
-                    title: 'Оказание услуг по оценке оборудования',
-                    date: '01.08.2021',
-                    status: 'process',
-                    from: 'Горячкина А. В.',
-                    project: 'Обеспечение гидроэлектростанции',
+                    title: "Оказание услуг по оценке оборудования",
+                    date: "01.08.2021",
+                    status: "В процессе",
+                    from: "Горячкина А. В.",
+                    project: "Обеспечение гидроэлектростанции",
                     lettersSent: 5,
-                    responses: 2,
+                    responses: 2
                 },
                 {
                     id: 2,
-                    title: 'Оказание услуг по оценке оборудования',
-                    date: '01.08.2021',
-                    status: 'process',
-                    from: 'Горячкина А. В.',
-                    project: 'Обеспечение гидроэлектростанции',
+                    title: "Оказание услуг по оценке оборудования",
+                    date: "01.08.2021",
+                    status: "В процессе",
+                    from: "Горячкина А. В.",
+                    project: "Обеспечение гидроэлектростанции",
                     lettersSent: 10,
-                    responses: 2,
+                    responses: 2
                 },
                 {
                     id: 3,
-                    title: 'Оказание услуг по оценке оборудования',
-                    date: '01.08.2021',
-                    status: 'process',
-                    from: 'Горячкина А. В.',
-                    project: 'Обеспечение гидроэлектростанции',
+                    title: "Оказание услуг по оценке оборудования",
+                    date: "01.08.2021",
+                    status: "В процессе",
+                    from: "Горячкина А. В.",
+                    project: "Обеспечение гидроэлектростанции",
                     lettersSent: 24,
-                    responses: 0,
+                    responses: 0
                 },
                 {
                     id: 4,
-                    title: 'Оказание услуг по оценке оборудования',
-                    date: '01.08.2021',
-                    status: 'process',
-                    from: 'Горячкина А. В.',
-                    project: 'Обеспечение гидроэлектростанции',
+                    title: "Оказание услуг по оценке оборудования",
+                    date: "01.08.2021",
+                    status: "В процессе",
+                    from: "Горячкина А. В.",
+                    project: "Обеспечение гидроэлектростанции",
                     lettersSent: 24,
-                    responses: 0,
-                },
-            ],
-        }
+                    responses: 0
+                }
+            ]
+        };
     },
     methods: {
         selectItem(text) {
@@ -264,11 +269,14 @@ export default {
         Datepicker
         // DoughnutChart
     }
-}
+};
 </script>
 
 <style lang="scss">
 .tasks {
+    --vdp-selected-bg-color: #1c3b80;
+    --vdp-hover-bg-color: #678ddf;
+    
     &__actions {
         display: flex;
         margin-bottom: 40px;
@@ -290,14 +298,16 @@ export default {
             #{$statsSelectRoot}-list {
                 display: flex;
             }
+
             #{$statsSelectRoot}-button {
-                box-shadow: 0 3px 12px 5px rgba(0, 0, 0, .05);
+                box-shadow: 0 3px 12px 5px rgba(0, 0, 0, 0.05);
             }
         }
         &-button {
             @include base-button();
             padding: 10px 18px;
             border-radius: 25px;
+
             &-text {
                 font-style: normal;
                 font-weight: normal;
@@ -305,9 +315,10 @@ export default {
                 line-height: 29px;
                 color: rgba(25, 52, 120, 0.5);
             }
+
             &-icon {
                 color: #193478;
-                font-size: .7em;
+                font-size: 0.7em;
                 margin-left: 15px;
             }
         }
@@ -323,7 +334,7 @@ export default {
             background: #ffffff;
             border-radius: 6px;
             overflow: hidden;
-            box-shadow: 0 3px 12px 5px rgba(0, 0, 0, .05);
+            box-shadow: 0 3px 12px 5px rgba(0, 0, 0, 0.05);
             &-item {
                 display: inline-block;
             }
@@ -343,20 +354,20 @@ export default {
 
     &__action-button {
         @include base-button();
-        border: 1px solid #3675B3;
+        border: 1px solid #3675b3;
         padding: 24px 19px;
         width: 250px;
         text-align: left;
         border-radius: 10px;
         display: inline-flex;
         justify-content: space-between;
-        background-color: #3675B3;
+        background-color: #3675b3;
         color: #ffffff;
 
         &:hover {
-            transition: ease background-color .2s;
+            transition: ease background-color 0.2s;
             background-color: #ffffff;
-            color: #3675B3;
+            color: #3675b3;
             border-color: #193478;
         }
 
@@ -406,7 +417,7 @@ export default {
             width: 350px;
             height: 350px;
             border-radius: 50%;
-            background-color: #07173E;
+            background-color: #07173e;
             margin-right: 60px;
         }
     }
@@ -434,17 +445,17 @@ export default {
         &-input {
             width: 100%;
             background: #ffffff;
-            box-shadow: 0 3px 12px 5px rgba(0, 0, 0, .05);
+            box-shadow: 0 3px 12px 5px rgba(0, 0, 0, 0.05);
             border-radius: 10px;
             max-width: 100%;
             padding: 12px;
             font-size: 14px;
-            border: 2px solid #1C3B80;
+            border: 2px solid #1c3b80;
             outline: none;
-            transition: ease box-shadow .3s;
+            transition: ease box-shadow 0.3s;
 
             &:focus {
-                box-shadow: 0 5px 16px 5px rgba(0, 0, 0, .15);
+                box-shadow: 0 5px 16px 5px rgba(0, 0, 0, 0.15);
             }
         }
 
@@ -480,7 +491,7 @@ export default {
             font-weight: normal;
             font-size: 18px;
             line-height: 22px;
-            color: #07173E;
+            color: #07173e;
             width: 345px;
             margin-right: 17px;
         }
@@ -490,7 +501,7 @@ export default {
             font-weight: 600;
             font-size: 24px;
             line-height: 29px;
-            color: #07173E;
+            color: #07173e;
         }
     }
 }

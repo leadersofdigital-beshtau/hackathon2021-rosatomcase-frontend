@@ -351,9 +351,11 @@ export default {
     &__actions {
         display: flex;
         margin-bottom: 68px;
+        flex-wrap: wrap;
 
         &-item {
             margin-right: 30px;
+            margin-bottom: 30px;
 
             &:last-child {
                 margin-right: 0;

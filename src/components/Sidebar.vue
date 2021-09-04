@@ -136,7 +136,7 @@ export default {
 
     &__profile {
         background-color: #ffffff;
-        padding: 23px 23px 58px 23px;
+        padding: 23px 23px 23px 23px;
         margin-bottom: 17px;
 
         &-button {
@@ -160,7 +160,7 @@ export default {
             margin-top: 17px;
             font-style: normal;
             font-weight: 300;
-            font-size: 24px;
+            font-size: 22px;
             line-height: 29px;
             text-align: center;
             color: #000000;
@@ -175,8 +175,8 @@ export default {
             img {
                 display: block;
                 border-radius: 50%;
-                width: 75px;
-                height: 75px;
+                width: 50px;
+                height: 50px;
             }
         }
     }

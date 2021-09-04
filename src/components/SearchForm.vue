@@ -37,10 +37,11 @@ export default {
         width: 100%;
         padding: 18px 50px 18px 25px;
         font-size: 24px;
-        border: 2px solid transparent;
+        border: 2px solid #1C3B80;
         outline: none;
+        transition: ease box-shadow .3s;
         &:focus {
-            border-color: #1C3B80;
+            box-shadow: 0 5px 16px 5px rgba(0, 0, 0, .15);
         }
     }
 

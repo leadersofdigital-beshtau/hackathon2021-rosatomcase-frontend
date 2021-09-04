@@ -9,3 +9,7 @@
     font-display: swap;
   }
 }
+
+@function vw($num) {
+  @return ($num * 100/ 1920) * 1vw;
+}

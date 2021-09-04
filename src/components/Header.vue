@@ -4,7 +4,7 @@
       <ul class="header__list">
         <router-link class="header__list-item" to="/">Home</router-link> |
         <router-link class="header__list-item" to="/about">About</router-link> |
-        <router-link class="header__list-item" to="/supply">Supply</router-link>
+        <router-link class="header__list-item" to="/provaider">Supply</router-link>
       </ul>
     </nav>
   </header>

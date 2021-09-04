@@ -64,360 +64,93 @@
           </div>
 
           <div class="supply__tabs">
-            <ul class="supply__tabs-list">
-              <li
-                class="supply__tabs-item"
-                v-for="(item, index) in tabsBtn"
-                :key="index"
-              >
-                <button class="supply__tabs-btn" @click.prevent="tabs(index)">
-                  {{ item }}
-                </button>
-              </li>
-              <li class="supply__tabs-item">
-                <button class="supply__tabs-add" @click.prevent="focus">
-                  +
-                </button>
-              </li>
-            </ul>
-            <button class="supply__btn">
-              <i class="icon-plus"></i>
-            </button>
+            <div class="supply__tabs__inner">
+              <ul class="supply__tabs-list">
+                <li
+                  class="supply__tabs-item"
+                  v-for="(item, index) in tabsBtn"
+                  :key="index"
+                >
+                  <button class="supply__tabs-btn" @click.prevent="tabs(index)">
+                    {{ item }}
+                  </button>
+                </li>
+                <li class="supply__tabs-item">
+                  <button class="supply__tabs-add" @click.prevent="focus">
+                    +
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <button class="supply__setting"></button>
           </div>
 
           <ul class="supply__list">
-            <li class="supply__item">
+            <li class="supply__item" v-for="item in dataSearch" :key="item.id">
               <div class="supply__header">
                 <h2 class="supply__item-title">
-                  Акционерное общество "Уральский электромеханический завод"
+                  {{ item.title }}
                 </h2>
                 <form class="supply__header-controls">
-                  <input
-                    class="supply__checkbox"
-                    id="check"
-                    type="checkbox"
-                    name="check"
-                    value="yes"
-                  />
-                  <label class="supply__label" for="check"></label>
+                  <label class="supply__label-submit supply__label">
+                    <input
+                      class="supply__checkbox supply__checkbox-submit"
+                      type="checkbox"
+                      name="check"
+                      :checked="item.query == true"
+                    />
+                  </label>
+                  <label class="supply__label-save supply__label">
+                    <input
+                      class="supply__checkbox supply__checkbox-save"
+                      type="checkbox"
+                      name="save"
+                      :checked="item.save == false"
+                    />
+                  </label>
                 </form>
               </div>
               <div class="supply__item-inner">
-                <img
-                  class="supply__item-img"
-                  src="@/assets/img/del/item_supply.png"
-                  alt=""
-                />
+                <img class="supply__item-img" :src="item.img" alt="logo" />
                 <div class="supply__item-info">
-                  <h3 class="supply__item-title">АО "УЭМЗ"</h3>
+                  <h3 class="supply__item-title">{{ item.subtitle }}</h3>
                   <ul class="supply__item-list">
                     <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> Отзывы </a>
+                      <a class="supply__item-link" :href="item.hrefReviews">
+                        Отзывы
+                      </a>
                     </li>
                     <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> Обороты </a>
+                      <a class="supply__item-link" :href="item.hrefTurn">
+                        Обороты
+                      </a>
                     </li>
                     <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> СПАРК риски </a>
+                      <a class="supply__item-link" :href="item.hrefRisk">
+                        СПАРК риски
+                      </a>
                     </li>
                     <li class="supply__item-elem">
-                      <a class="supply__item-link" href="">
+                      <a class="supply__item-link" :href="item.hrefContacts">
                         Контактная информация
                       </a>
                     </li>
                     <li class="supply__item-elem">
-                      <a class="supply__item-link" href="">
+                      <a class="supply__item-link" :href="item.hrefInfo">
                         Информация о сотрудничестве по другим проектам
                       </a>
                     </li>
                   </ul>
                 </div>
                 <div class="supply__answer">
-                  <p class="supply__answer-alert active">
+                  <p
+                    :class="{
+                      active: item.answer == true,
+                      'supply__answer-alert': true,
+                    }"
+                  >
                     Поступил ответ на приглашение
                   </p>
-                </div>
-              </div>
-            </li>
-            <li class="supply__item">
-              <div class="supply__header">
-                <h2 class="supply__item-title">
-                  Акционерное общество "Уральский электромеханический завод"
-                </h2>
-                <form class="supply__header-controls">
-                  <input
-                    class="supply__checkbox"
-                    id="check"
-                    type="checkbox"
-                    name="check"
-                    value="yes"
-                  />
-                  <label class="supply__label" for="check"></label>
-                </form>
-              </div>
-              <div class="supply__item-inner">
-                <img
-                  class="supply__item-img"
-                  src="@/assets/img/del/item_supply.png"
-                  alt=""
-                />
-                <div class="supply__item-info">
-                  <h3 class="supply__item-title">АО "УЭМЗ"</h3>
-                  <ul class="supply__item-list">
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> Отзывы </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> Обороты </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> СПАРК риски </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href="">
-                        Контактная информация
-                      </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href="">
-                        Информация о сотрудничестве по другим проектам
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="supply__answer">
-                  <p class="supply__answer-alert">Ожидание ответа</p>
-                </div>
-              </div>
-            </li>
-            <li class="supply__item">
-              <div class="supply__header">
-                <h2 class="supply__item-title">
-                  Акционерное общество "Уральский электромеханический завод"
-                </h2>
-                <form class="supply__header-controls">
-                  <input
-                    class="supply__checkbox"
-                    id="check"
-                    type="checkbox"
-                    name="check"
-                    value="yes"
-                  />
-                  <label class="supply__label" for="check"></label>
-                </form>
-              </div>
-              <div class="supply__item-inner">
-                <img
-                  class="supply__item-img"
-                  src="@/assets/img/del/item_supply.png"
-                  alt=""
-                />
-                <div class="supply__item-info">
-                  <h3 class="supply__item-title">АО "УЭМЗ"</h3>
-                  <ul class="supply__item-list">
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> Отзывы </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> Обороты </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> СПАРК риски </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href="">
-                        Контактная информация
-                      </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href="">
-                        Информация о сотрудничестве по другим проектам
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="supply__answer">
-                  <p class="supply__answer-alert">Ожидание ответа</p>
-                </div>
-              </div>
-            </li>
-            <li class="supply__item">
-              <div class="supply__header">
-                <h2 class="supply__item-title">
-                  Акционерное общество "Уральский электромеханический завод"
-                </h2>
-                <form class="supply__header-controls">
-                  <input
-                    class="supply__checkbox"
-                    id="check"
-                    type="checkbox"
-                    name="check"
-                    value="yes"
-                  />
-                  <label class="supply__label" for="check"></label>
-                </form>
-              </div>
-              <div class="supply__item-inner">
-                <img
-                  class="supply__item-img"
-                  src="@/assets/img/del/item_supply.png"
-                  alt=""
-                />
-                <div class="supply__item-info">
-                  <h3 class="supply__item-title">АО "УЭМЗ"</h3>
-                  <ul class="supply__item-list">
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> Отзывы </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> Обороты </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> СПАРК риски </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href="">
-                        Контактная информация
-                      </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href="">
-                        Информация о сотрудничестве по другим проектам
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="supply__answer">
-                  <p class="supply__answer-alert">Ожидание ответа</p>
-                </div>
-              </div>
-            </li>
-          </ul>
-
-          <ul class="supply__list">
-            <li class="supply__item">
-              <div class="supply__header">
-                <h2 class="supply__item-title">
-                  Акционерное общество "Уральский электромеханический завод"
-                </h2>
-                <div class="supply__header-controls"></div>
-              </div>
-              <div class="supply__item-inner">
-                <img
-                  class="supply__item-img"
-                  src="@/assets/img/del/item_supply.png"
-                  alt=""
-                />
-                <div class="supply__item-info">
-                  <h3 class="supply__item-title">АО "УЭМЗ"</h3>
-                  <ul class="supply__item-list">
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> Отзывы </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> Обороты </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> СПАРК риски </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href="">
-                        Контактная информация
-                      </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href="">
-                        Информация о сотрудничестве по другим проектам
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="supply__answer">
-                  <p class="supply__answer-alert">Ожидание ответа</p>
-                </div>
-              </div>
-            </li>
-            <li class="supply__item">
-              <div class="supply__header">
-                <h2 class="supply__item-title">
-                  Акционерное общество "Уральский электромеханический завод"
-                </h2>
-                <div class="supply__header-controls"></div>
-              </div>
-              <div class="supply__item-inner">
-                <img
-                  class="supply__item-img"
-                  src="@/assets/img/del/item_supply.png"
-                  alt=""
-                />
-                <div class="supply__item-info">
-                  <h3 class="supply__item-title">АО "УЭМЗ"</h3>
-                  <ul class="supply__item-list">
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> Отзывы </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> Обороты </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> СПАРК риски </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href="">
-                        Контактная информация
-                      </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href="">
-                        Информация о сотрудничестве по другим проектам
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="supply__answer">
-                  <p class="supply__answer-alert">Ожидание ответа</p>
-                </div>
-              </div>
-            </li>
-            <li class="supply__item">
-              <div class="supply__header">
-                <h2 class="supply__item-title">
-                  Акционерное общество "Уральский электромеханический завод"
-                </h2>
-                <div class="supply__header-controls"></div>
-              </div>
-              <div class="supply__item-inner">
-                <img
-                  class="supply__item-img"
-                  src="@/assets/img/del/item_supply.png"
-                  alt=""
-                />
-                <div class="supply__item-info">
-                  <h3 class="supply__item-title">АО "УЭМЗ"</h3>
-                  <ul class="supply__item-list">
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> Отзывы </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> Обороты </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href=""> СПАРК риски </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href="">
-                        Контактная информация
-                      </a>
-                    </li>
-                    <li class="supply__item-elem">
-                      <a class="supply__item-link" href="">
-                        Информация о сотрудничестве по другим проектам
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="supply__answer">
-                  <p class="supply__answer-alert">Ожидание ответа</p>
                 </div>
               </div>
             </li>
@@ -436,6 +169,76 @@ export default {
     return {
       categoria: "",
       tabsBtn: ["Поставка ПГС", "Сварочные работы"],
+      dataSearch: [
+        {
+          id: 0,
+          title: 'Акционерное общество "Уральский электромеханический завод"',
+          subtitle: 'АО "УЭМЗ"',
+          img: require("@/assets/img/del/item_supply.png"),
+          hrefReviews: "#",
+          hrefTurn: "#",
+          hrefRisk: "#",
+          hrefContacts: "#",
+          hrefInfo: "#",
+          answer: true,
+          query: true,
+          save: false,
+        },
+        {
+          id: 1,
+          title: 'Акционерное общество "Уральский электромеханический завод"',
+          subtitle: 'АО "УЭМЗ"',
+          img: require("@/assets/img/del/item_supply.png"),
+          hrefReviews: "#",
+          hrefTurn: "#",
+          hrefRisk: "#",
+          hrefContacts: "#",
+          hrefInfo: "#",
+          answer: true,
+          query: true,
+          save: false,
+        },
+        {
+          id: 2,
+          title: 'Акционерное общество "Уральский электромеханический завод"',
+          subtitle: 'АО "УЭМЗ"',
+          img: require("@/assets/img/del/item_supply.png"),
+          hrefReviews: "#",
+          hrefTurn: "#",
+          hrefRisk: "#",
+          hrefContacts: "#",
+          hrefInfo: "#",
+          answer: false,
+          query: false,
+          save: false,
+        },
+        {
+          id: 3,
+          title: 'Акционерное общество "Уральский электромеханический завод"',
+          subtitle: 'АО "УЭМЗ"',
+          img: require("@/assets/img/del/item_supply.png"),
+          hrefReviews: "#",
+          hrefTurn: "#",
+          hrefRisk: "#",
+          hrefContacts: "#",
+          hrefInfo: "#",
+          answer: false,
+          query: false,
+          save: false,
+        },
+        // {
+        //   id: 0,
+        //   title: '',
+        //   subtitle: '',
+        //   img: '@/assets/img/del/item_supply.png',
+        //   hrefReviews: '',
+        //   hrefTurn: '',
+        //   hrefRisk: '',
+        //   hrefContacts: '',
+        //   hrefInfo: '',
+        //   answer: false,
+        // }
+      ],
     };
   },
   components: {
@@ -501,12 +304,12 @@ export default {
 
   &__main {
     flex: 1;
-    padding: 99px 104px;
     background-color: aliceblue;
   }
 
   &__container {
     max-width: 1375px;
+    width: 100%;
     margin: 0 auto;
   }
 

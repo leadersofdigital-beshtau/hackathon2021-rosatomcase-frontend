@@ -55,7 +55,7 @@ export default {
                     id: "mailing",
                     title: "Рассылка",
                     icon: "mailing",
-                    to: "/mailing"
+                    to: "/dashboard/mailing"
                 },
                 {
                     id: "provider",
@@ -73,37 +73,37 @@ export default {
                     id: "reports",
                     title: "Отчеты",
                     icon: "doc-edit",
-                    to: "/reports"
+                    to: "/dashboard/reports"
                 },
                 {
                     id: "search",
                     title: "История поиска",
                     icon: "doc-search",
-                    to: "/search"
+                    to: "/dashboard/search"
                 },
                 {
                     id: "discussions",
                     title: "Обсуждения",
                     icon: "discussion",
-                    to: "/discussions"
+                    to: "/dashboard/discussions"
                 },
                 {
                     id: "education",
                     title: "Обучение",
                     icon: "education",
-                    to: "/education"
+                    to: "/dashboard/education"
                 },
                 {
                     id: "docs",
                     title: "Документы",
                     icon: "docs",
-                    to: "/docs"
+                    to: "/dashboard/docs"
                 },
                 {
                     id: "subscriptions",
                     title: "Мои подписки",
                     icon: "fav-star",
-                    to: "/subscriptions"
+                    to: "/dashboard/subscriptions"
                 }
             ]
         };

@@ -152,7 +152,7 @@ export default {
 
     &__main {
         flex: 1;
-        padding: 99px 104px 99px 380px;
+        padding: 50px 104px 99px 380px;
     }
 
     &__container {

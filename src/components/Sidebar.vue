@@ -204,13 +204,13 @@ export default {
 
             &--active {
                 color: #ffffff;
-                background-color: #3675b3;
+                background-color: #193478;
                 #{$listRoot}-icon {
                     color: #ffffff;
                 }
                 &:hover {
                     color: #ffffff;
-                    background-color: #3675b3;
+                    background-color: #193478;
                     #{$listRoot}-icon {
                         color: #ffffff;
                     }

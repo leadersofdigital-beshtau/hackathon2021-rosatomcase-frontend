@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import Provaider from '../views/Supply.vue'
+import Supply from '../views/Provider.vue'
 import About from '../views/About.vue'
-import Dashboard from "../views/Dashboard";
+import Tasks from "../views/Tasks";
 
 const routes = [
   {
@@ -14,9 +14,9 @@ const routes = [
 		},
   },
   {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: Dashboard
+    path: '/dashboard/tasks',
+    name: 'Tasks',
+    component: Tasks
   },
   {
     path: '/about',
@@ -27,9 +27,9 @@ const routes = [
 		},
   },
   {
-    path: '/provaider',
-    name: 'Provaider',
-    component: Provaider,
+    path: '/dashboard/supply',
+    name: 'Supply',
+    component: Supply,
 		meta: {
 			key: 3,
 		},

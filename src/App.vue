@@ -1,37 +1,53 @@
 <template>
-  <div class="app">
-    <div class="app__header">
-      <Header :page="key"></Header>
+    <div class="dashboard">
+        <div class="dashboard__grid">
+            <div class="dashboard__sidebar">
+                <Sidebar></Sidebar>
+            </div>
+            <div class="dashboard__main">
+                <div class="dashboard__container">
+                    <router-view :key="key" />
+                </div>
+            </div>
+        </div>
     </div>
-
-    <main class="app__main">
-      <router-view :key="key" />
-    </main>
-
-    <div class="app__footer">
-      <Footer :page="key"></Footer>
-    </div>
-  </div>
 </template>
 
 <script>
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Sidebar from "@/components/Sidebar";
 
 export default {
-  name: "Home",
-  components: {
-    Footer,
-    Header,
-  },
-  computed: {
-    key() {
-      return this.$route.meta.key !== undefined
-        ? this.$route.meta.key
-        : this.$route;
+    name: "App",
+    data() {
+        return {};
     },
-  },
+    components: {
+        Sidebar
+    }
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.dashboard {
+    &__grid {
+        display: flex;
+    }
+
+    &__sidebar {
+        max-width: 290px;
+        width: 290px;
+        background: #ffffff;
+        box-shadow: 0 3px 12px 5px rgba(0, 0, 0, .05);
+    }
+
+    &__main {
+        flex: 1;
+        padding: 99px 104px;
+    }
+
+    &__container {
+        max-width: 1410px;
+        margin: 0 auto;
+    }
+}
+</style>

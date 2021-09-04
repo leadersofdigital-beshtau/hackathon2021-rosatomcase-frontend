@@ -1,5 +1,5 @@
 <template>
-    <aside class="sidebar">
+    <div class="sidebar">
         <div class="sidebar__logo">
             <img
                 src="@/assets/rosatom_logo.png"
@@ -42,7 +42,7 @@
                 </li>
             </ul>
         </nav>
-    </aside>
+    </div>
 </template>
 
 <script>
@@ -51,7 +51,7 @@ export default {
     data() {
         return {
             user: {
-                name: 'Пётр Иванов'
+                name: "Пётр Иванов"
             },
             menuItems: [
                 {
@@ -125,7 +125,12 @@ export default {
     background-color: #f8f7fd;
 
     &__logo {
-        padding: 24px 30px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 0 20px;
         background-color: #f9f9fd;
     }
 
@@ -147,6 +152,8 @@ export default {
             justify-content: center;
             width: 100%;
             margin: 0 auto;
+            background: #ffffff;
+            border-radius: 10px;
         }
 
         &-name {
@@ -181,10 +188,6 @@ export default {
             margin-bottom: 9px;
             background-color: #ffffff;
             border-radius: 10px;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
         }
 
         &-link {

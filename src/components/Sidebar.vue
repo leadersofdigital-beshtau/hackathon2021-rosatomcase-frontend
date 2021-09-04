@@ -39,10 +39,10 @@ export default {
                     to: '/mailing',
                 },
                 {
-                    id: 'provider',
+                    id: 'provaider',
                     title: 'Поставщик',
                     icon: 'star-person',
-                    to: '/provider',
+                    to: '/provaider',
                 },
                 {
                     id: 'tasks',

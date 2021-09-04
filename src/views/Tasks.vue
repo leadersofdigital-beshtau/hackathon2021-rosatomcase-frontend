@@ -221,7 +221,8 @@ export default {
                 datasets: [
                     {
                         backgroundColor: ["#3675B3", "#193478", "#131F3D"],
-                        data: [2385, 905, 4243]
+                        data: [2385, 905, 4243],
+                        borderWidth: 0,
                     }
                 ]
             }

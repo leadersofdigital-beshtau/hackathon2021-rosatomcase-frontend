@@ -54,8 +54,34 @@
                         </div>
                     </div>
                     <div class="dashboard__stats">
-                        <div class="dashboard__stats-datepicker">
-                            <input type="text" class="dashboard__stats-datepicker-input">
+                        <div class="dashboard__stats-head">
+                            <div class="dashboard__stats-datepicker">
+                                <label class="dashboard__stats-datepicker-label">Дата или период</label>
+                                <div class="dashboard__stats-datepicker-container">
+                                    <Datepicker class="dashboard__stats-datepicker-input" v-model="datepickerDate"/>
+                                    <i class="dashboard__stats-datepicker-icon icon-calendar"></i>
+                                </div>
+                            </div>
+                            <div class="dashboard__stats-select" :class="{'dashboard__stats-select--active': isSelectActive}">
+                                <button v-on:click="isSelectActive = !isSelectActive" class="dashboard__stats-select-button">
+                                    <span class="dashboard__stats-select-button-text">{{ selectedText }}</span>
+                                    <i class="dashboard__stats-select-button-icon icon-angle-down"></i>
+                                </button>
+                                <ul class="dashboard__stats-select-list">
+                                    <li class="dashboard__stats-select-list-item">
+                                        <button v-on:click="selectItem('За день')" class="dashboard__stats-select-list-button">За день</button>
+                                    </li>
+                                    <li class="dashboard__stats-select-list-item">
+                                        <button v-on:click="selectItem('За неделю')" class="dashboard__stats-select-list-button">За неделю</button>
+                                    </li>
+                                    <li class="dashboard__stats-select-list-item">
+                                        <button v-on:click="selectItem('За месяц')" class="dashboard__stats-select-list-button">За месяц</button>
+                                    </li>
+                                    <li class="dashboard__stats-select-list-item">
+                                        <button v-on:click="selectItem('За год')" class="dashboard__stats-select-list-button">За год</button>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="dashboard__stats-grid">
                             <!--                        <DoughnutChart :chartData="testData" />-->
@@ -63,7 +89,8 @@
                             <div class="dashboard__stats-detail">
                                 <div class="dashboard__stats-chart-info">
                                     <div class="dashboard__stats-chart-row">
-                                        <div class="dashboard__stats-chart-row-color" style="background-color: #3675B3"></div>
+                                        <div class="dashboard__stats-chart-row-color"
+                                             style="background-color: #3675B3"></div>
                                         <div class="dashboard__stats-chart-row-text">
                                             Количество договоров, заключенных заказчиком по результатам закупки
                                         </div>
@@ -72,7 +99,8 @@
                                         </div>
                                     </div>
                                     <div class="dashboard__stats-chart-row">
-                                        <div class="dashboard__stats-chart-row-color" style="background-color: #193478"></div>
+                                        <div class="dashboard__stats-chart-row-color"
+                                             style="background-color: #193478"></div>
                                         <div class="dashboard__stats-chart-row-text">
                                             Количество договоров, заключенных закупки у единственного поставщика
                                         </div>
@@ -81,7 +109,8 @@
                                         </div>
                                     </div>
                                     <div class="dashboard__stats-chart-row">
-                                        <div class="dashboard__stats-chart-row-color" style="background-color: #193478"></div>
+                                        <div class="dashboard__stats-chart-row-color"
+                                             style="background-color: #193478"></div>
                                         <div class="dashboard__stats-chart-row-text">
                                             Общая стоимость договоров, заключенных по результатам закупки
                                         </div>
@@ -90,7 +119,8 @@
                                         </div>
                                     </div>
                                     <div class="dashboard__stats-chart-row">
-                                        <div class="dashboard__stats-chart-row-color" style="background-color: #193478"></div>
+                                        <div class="dashboard__stats-chart-row-color"
+                                             style="background-color: #193478"></div>
                                         <div class="dashboard__stats-chart-row-text">
                                             Количество договоров закупки, признанные несостоявшимися
                                         </div>
@@ -115,6 +145,8 @@ import TaskPreview from "../components/TaskPreview";
 
 // import { DoughnutChart } from 'vue-chart-3';
 
+import Datepicker from 'vue3-datepicker'
+
 export default {
     name: 'Dashboard',
     // setup() {
@@ -132,6 +164,9 @@ export default {
     // },
     data() {
         return {
+            datepickerDate: new Date(),
+            isSelectActive: false,
+            selectedText: 'За месяц',
             tasks: [
                 {
                     id: 1,
@@ -176,16 +211,23 @@ export default {
             ],
         }
     },
+    methods: {
+        selectItem(text) {
+            this.selectedText = text;
+            this.isSelectActive = false;
+        }
+    },
     components: {
         Sidebar,
         SearchForm,
         TaskPreview,
+        Datepicker
         // DoughnutChart
     }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .dashboard {
     &__grid {
         display: flex;
@@ -217,6 +259,65 @@ export default {
 
             &:last-child {
                 margin-right: 0;
+            }
+        }
+    }
+
+    &__stats-select {
+        position: relative;
+        $statsSelectRoot: &;
+
+        &--active {
+            #{$statsSelectRoot}-list {
+                display: flex;
+            }
+            #{$statsSelectRoot}-button {
+                box-shadow: 0 3px 12px 5px rgba(0, 0, 0, .05);
+            }
+        }
+        &-button {
+            @include base-button();
+            padding: 10px 18px;
+            border-radius: 25px;
+            &-text {
+                font-style: normal;
+                font-weight: normal;
+                font-size: 24px;
+                line-height: 29px;
+                color: rgba(25, 52, 120, 0.5);
+            }
+            &-icon {
+                color: #193478;
+                font-size: .7em;
+                margin-left: 15px;
+            }
+        }
+        &-list {
+            transform: translateY(100%);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200px;
+            display: none;
+            list-style: none;
+            flex-direction: column;
+            background: #ffffff;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px 5px rgba(0, 0, 0, .05);
+            &-item {
+                display: inline-block;
+            }
+            &-button {
+                @include base-button();
+                width: 100%;
+                padding: 14px 16px;
+                font-size: 16px;
+                text-align: left;
+                background: #ffffff;
+                &:hover {
+                    background-color: #e9e9e9;
+                }
             }
         }
     }
@@ -273,10 +374,15 @@ export default {
     }
 
     &__stats {
+        &-head {
+            display: flex;
+            align-items: center;
+        }
         &-grid {
             display: flex;
             align-items: flex-start;
         }
+
         &-chart {
             width: 350px;
             height: 350px;
@@ -286,22 +392,50 @@ export default {
         }
     }
 
-    &__stats-datepicker  {
+    &__stats-datepicker {
         margin-bottom: 30px;
+        max-width: 256px;
+        margin-right: 40px;
+
+        &-label {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 22px;
+            display: flex;
+            align-items: flex-end;
+            color: #808185;
+            margin-bottom: 5px;
+        }
+
+        &-container {
+            position: relative;
+        }
+
         &-input {
+            width: 100%;
             background: #ffffff;
             box-shadow: 0 3px 12px 5px rgba(0, 0, 0, .05);
             border-radius: 10px;
-            width: 250px;
             max-width: 100%;
             padding: 12px;
             font-size: 14px;
             border: 2px solid #1C3B80;
             outline: none;
             transition: ease box-shadow .3s;
+
             &:focus {
                 box-shadow: 0 5px 16px 5px rgba(0, 0, 0, .15);
             }
+        }
+
+        &-icon {
+            color: #193478;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            position: absolute;
         }
     }
 
@@ -309,6 +443,7 @@ export default {
         display: flex;
         align-items: flex-start;
         margin-bottom: 25px;
+
         &:last-child {
             margin-bottom: 0;
         }

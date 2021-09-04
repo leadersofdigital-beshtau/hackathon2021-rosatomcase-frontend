@@ -1,24 +1,24 @@
 <template>
   <div class="app">
-
     <div class="app__header">
       <Header :page="key"></Header>
     </div>
 
     <main class="app__main">
-      <router-view :key="key"/>
+      <router-view :key="key" />
     </main>
 
     <div class="app__footer">
       <Footer :page="key"></Footer>
     </div>
-
   </div>
 </template>
 
 <script>
-export default {
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
+export default {
   name: "Home",
   components: {
     Footer,
@@ -32,8 +32,6 @@ export default {
     },
   },
 };
-
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>

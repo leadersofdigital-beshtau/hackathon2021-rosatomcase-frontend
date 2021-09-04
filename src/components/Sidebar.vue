@@ -16,7 +16,7 @@
         <nav class="sidebar__nav">
             <ul class="sidebar__list">
                 <li v-for="item in menuItems" :key="item.id" class="sidebar__list-item">
-                    <router-link class="sidebar__list-link" :to="item.to">
+                    <router-link class="sidebar__list-link" :to="item.to" active-class="sidebar__list-link--active">
                         <i class="sidebar__list-icon" :class="getMenuItemIconClass(item.icon)"></i>
                         <span class="sidebar__list-text">{{ item.title }}</span>
                     </router-link>

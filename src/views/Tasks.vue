@@ -461,7 +461,7 @@ export default {
         &-icon {
             display: inline-block;
             margin-left: auto;
-            font-size: 1.2em;
+            font-size: 1em;
         }
     }
 

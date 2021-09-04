@@ -17,7 +17,7 @@ const routes = [
         component: Mailing,
         meta: {
             key: 1,
-            title: 'Рассылка',
+            title: "Рассылка"
         }
     },
     {
@@ -26,7 +26,7 @@ const routes = [
         component: Supply,
         meta: {
             key: 2,
-            title: 'Поставщик',
+            title: "Поставщик"
         }
     },
     {
@@ -35,7 +35,7 @@ const routes = [
         component: Tasks,
         meta: {
             key: 3,
-            title: 'Задачи',
+            title: "Задачи"
         }
     },
     {
@@ -44,7 +44,7 @@ const routes = [
         component: Reports,
         meta: {
             key: 4,
-            title: 'Отчеты',
+            title: "Отчеты"
         }
     },
     {
@@ -53,7 +53,7 @@ const routes = [
         component: Search,
         meta: {
             key: 5,
-            title: 'История поиска',
+            title: "История поиска"
         }
     },
     {
@@ -62,7 +62,7 @@ const routes = [
         component: Discussions,
         meta: {
             key: 6,
-            title: 'Обсуждения',
+            title: "Обсуждения"
         }
     },
     {
@@ -71,7 +71,7 @@ const routes = [
         component: Education,
         meta: {
             key: 7,
-            title: 'Обучение',
+            title: "Обучение"
         }
     },
     {
@@ -80,7 +80,7 @@ const routes = [
         component: Docs,
         meta: {
             key: 7,
-            title: 'Документы',
+            title: "Документы"
         }
     },
     {
@@ -89,7 +89,7 @@ const routes = [
         component: Subscriptions,
         meta: {
             key: 8,
-            title: 'Мои подписки',
+            title: "Мои подписки"
         }
     }
 ];
@@ -97,6 +97,10 @@ const routes = [
 const router = createRouter({
     history: createWebHashHistory(process.env.BASE_URL),
     routes
+});
+
+router.beforeEach(() => {
+    window.scrollTo(0, 0);
 });
 
 export default router;

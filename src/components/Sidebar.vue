@@ -51,7 +51,7 @@ export default {
     data() {
         return {
             user: {
-                name: 'Пётр Иванов'
+                name: "Пётр Иванов"
             },
             menuItems: [
                 {
@@ -152,7 +152,7 @@ export default {
             justify-content: center;
             width: 100%;
             margin: 0 auto;
-            background: #FFFFFF;
+            background: #ffffff;
             border-radius: 10px;
         }
 
@@ -188,10 +188,6 @@ export default {
             margin-bottom: 9px;
             background-color: #ffffff;
             border-radius: 10px;
-
-            &:last-child {
-                margin-bottom: 0;
-            }
         }
 
         &-link {

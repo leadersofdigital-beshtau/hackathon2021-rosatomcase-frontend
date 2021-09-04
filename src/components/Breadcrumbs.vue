@@ -43,7 +43,7 @@ export default {
             content: "\e911";
             display: inline-block;
             margin-left: 25px;
-            font-family: "icomoon" !important;
+            font-family: "rosatom" !important;
             font-size: .8em;
             font-style: normal;
             font-weight: normal;

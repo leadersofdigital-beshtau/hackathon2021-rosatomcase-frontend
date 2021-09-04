@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: '#{$icomoon-font-family}';
-  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?4048b3');
-  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?4048b3#iefix') format('embedded-opentype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?4048b3') format('truetype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?4048b3') format('woff'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?4048b3##{$icomoon-font-family}') format('svg');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?nuzlpj');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?nuzlpj#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?nuzlpj') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?nuzlpj') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?nuzlpj##{$icomoon-font-family}') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -27,6 +27,21 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-refresh {
+  &:before {
+    content: $icon-refresh; 
+  }
+}
+.icon-close {
+  &:before {
+    content: $icon-close; 
+  }
+}
+.icon-filters {
+  &:before {
+    content: $icon-filters; 
+  }
+}
 .icon-angle-right {
   &:before {
     content: $icon-angle-right; 

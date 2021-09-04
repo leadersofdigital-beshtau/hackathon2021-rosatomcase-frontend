@@ -133,7 +133,7 @@ export default {
 
         &-button {
             @include base-button();
-            margin-top: 55px;
+            margin-top: 10px;
             color: #193478;
             font-size: 25px;
         }
@@ -165,8 +165,8 @@ export default {
             img {
                 display: block;
                 border-radius: 50%;
-                width: 125px;
-                height: 125px;
+                width: 75px;
+                height: 75px;
             }
         }
     }

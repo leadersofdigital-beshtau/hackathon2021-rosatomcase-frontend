@@ -50,7 +50,7 @@
                     </div>
                 </main>
                 <footer class="dashboard__footer">
-                    © 2008–2021. Все права защищены. «Росатом»
+                    © 2008–2021. Все права защищены
                 </footer>
             </div>
         </div>

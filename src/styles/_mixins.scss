@@ -1,3 +1,4 @@
+
 @mixin font-face($font-family, $url, $weight, $style) {
   @font-face {
     font-family: "#{$font-family}";
@@ -9,3 +10,11 @@
     font-display: swap;
   }
 }
+
+@mixin base-button() {
+    border: none;
+    background: none;
+    display: inline-block;
+    cursor: pointer;
+}
+

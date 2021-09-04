@@ -1,17 +1,17 @@
 <template>
     <aside class="sidebar">
         <div class="sidebar__logo">
-            <img src="" alt="" class="sidebar__image">
+            <img src="@/assets/rosatom_logo.png" alt="РосАтом" class="sidebar__image">
         </div>
         <div class="sidebar__profile">
-            <button class="sidebar__profile-button"><i class="icon-settings"></i></button>
             <div class="sidebar__profile-main">
+                <button class="sidebar__profile-button"><i class="icon-gear"></i></button>
                 <div class="sidebar__profile-image">
-                    <img src="" alt="">
+                    <img src="@/assets/avatar.jpeg" alt="Фамилия Имя">
                 </div>
-                <div class="sidebar__profile-name">Фамилия Имя</div>
+                <button class="sidebar__profile-button"><i class="icon-bell"></i></button>
             </div>
-            <button class="sidebar__profile-button"><i class="icon-notifications"></i></button>
+            <div class="sidebar__profile-name">Фамилия Имя</div>
         </div>
         <nav class="sidebar__nav">
             <ul class="sidebar__list">
@@ -101,6 +101,57 @@ export default {
 <style lang="scss" scoped>
 .sidebar {
     background-color: #F8F7FD;
+
+    &__logo {
+        padding: 24px 14px;
+        background-color: #F9F9FD;
+
+    }
+
+    &__profile {
+        background-color: #FFFFFF;
+        padding: 23px 23px 58px 23px;
+        margin-bottom: 17px;
+
+        &-button {
+            @include base-button();
+            margin-top: 55px;
+            color: #193478;
+            font-size: 25px;
+        }
+
+        &-main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        &-name {
+            margin-top: 17px;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 24px;
+            line-height: 29px;
+            text-align: center;
+            color: #000000;
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &-image {
+            margin: 0 28px;
+            img {
+                display: block;
+                border-radius: 50%;
+                width: 125px;
+                height: 125px;
+            }
+        }
+    }
 
     &__list {
         &-item {

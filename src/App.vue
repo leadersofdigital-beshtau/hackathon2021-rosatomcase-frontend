@@ -1,15 +1,16 @@
 <template>
-  <div class="app">
-    <main class="app__main">
-      <router-view/>
-    </main>
-  </div>
+    <div class="app">
+        <router-link to="/dashboard">Dashboard</router-link>
+        <main class="app__main">
+            <router-view/>
+        </main>
+    </div>
 </template>
 
 <script>
 export default {
-  name: 'Home',
-  components: {}
+    name: 'Home',
+    components: {}
 }
 </script>
 

@@ -48,6 +48,11 @@
                             </button>
                         </div>
                     </div>
+                    <div class="dashboard__tasks">
+                        <div v-for="task in tasks" :key="task.id" class="dashboard__tasks-item">
+                            <TaskPreview :task="task"></TaskPreview>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,12 +62,60 @@
 <script>
 import Sidebar from "../components/Sidebar";
 import SearchForm from "../components/SearchForm";
+import TaskPreview from "../components/TaskPreview";
 
 export default {
     name: 'Dashboard',
+    data() {
+        return {
+            tasks: [
+                {
+                    id: 1,
+                    title: 'Оказание услуг по оценке оборудования',
+                    date: '01.08.2021',
+                    status: 'process',
+                    from: 'Горячкина А. В.',
+                    project: 'Обеспечение гидроэлектростанции',
+                    lettersSent: 5,
+                    responses: 2,
+                },
+                {
+                    id: 2,
+                    title: 'Оказание услуг по оценке оборудования',
+                    date: '01.08.2021',
+                    status: 'process',
+                    from: 'Горячкина А. В.',
+                    project: 'Обеспечение гидроэлектростанции',
+                    lettersSent: 10,
+                    responses: 2,
+                },
+                {
+                    id: 3,
+                    title: 'Оказание услуг по оценке оборудования',
+                    date: '01.08.2021',
+                    status: 'process',
+                    from: 'Горячкина А. В.',
+                    project: 'Обеспечение гидроэлектростанции',
+                    lettersSent: 24,
+                    responses: 0,
+                },
+                {
+                    id: 4,
+                    title: 'Оказание услуг по оценке оборудования',
+                    date: '01.08.2021',
+                    status: 'process',
+                    from: 'Горячкина А. В.',
+                    project: 'Обеспечение гидроэлектростанции',
+                    lettersSent: 24,
+                    responses: 0,
+                },
+            ],
+        }
+    },
     components: {
         Sidebar,
-        SearchForm
+        SearchForm,
+        TaskPreview
     }
 }
 </script>
@@ -86,12 +139,13 @@ export default {
     }
 
     &__container {
-        max-width: 1375px;
+        max-width: 1410px;
         margin: 0 auto;
     }
 
     &__actions {
         display: flex;
+        margin-bottom: 40px;
 
         &-item {
             margin-right: 30px;
@@ -137,6 +191,19 @@ export default {
     &__search-form {
         max-width: 1100px;
         margin-bottom: 52px;
+    }
+
+    &__tasks {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -20px;
+
+        &-item {
+            width: 475px;
+            padding: 0 20px;
+            margin-bottom: 40px;
+            align-items: stretch;
+        }
     }
 }
 </style>

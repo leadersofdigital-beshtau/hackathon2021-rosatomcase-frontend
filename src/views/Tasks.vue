@@ -184,7 +184,7 @@
                         <div class="tasks__stats-chart-row">
                             <div
                                 class="tasks__stats-chart-row-color"
-                                style="background-color: #193478"
+                                style="background-color: #131F3D"
                             ></div>
                             <div class="tasks__stats-chart-row-text">
                                 Количество договоров закупки, признанные
@@ -222,6 +222,7 @@ export default {
     },
     setup() {
         const chartRef = ref(null);
+        const backgroundColor = ["#3675B3", "#193478", "#132553", "#131F3D"];
 
         const chartData = [
             Math.floor(Math.random() * 500),
@@ -236,7 +237,7 @@ export default {
             data: {
                 datasets: [
                     {
-                        backgroundColor: ["#3675B3", "#193478", "#131F3D"],
+                        backgroundColor: backgroundColor,
                         data: chartData,
                         borderWidth: 0
                     }
@@ -245,10 +246,18 @@ export default {
         };
 
         const updateDoughnutChart = () => {
+            const chartData = [
+                Math.floor(Math.random() * 500),
+                Math.floor(Math.random() * 1000),
+                Math.floor(Math.random() * 500),
+                Math.floor(Math.random() * 800)
+            ];
+
             doughnutChart.data.datasets = [
                 {
-                    backgroundColor: ["#3675B3", "#193478", "#131F3D"],
-                    data: chartData
+                    backgroundColor: backgroundColor,
+                    data: chartData,
+                    borderWidth: 0
                 }
             ];
             chartRef.value.update(250);
@@ -390,6 +399,7 @@ export default {
                 transition: ease 0.3s transform;
             }
         }
+
         &-list {
             transform: translateY(100%);
             position: absolute;
@@ -403,9 +413,11 @@ export default {
             border-radius: 6px;
             overflow: hidden;
             box-shadow: 0 3px 12px 5px rgba(0, 0, 0, 0.05);
+
             &-item {
                 display: inline-block;
             }
+
             &-button {
                 @include base-button();
                 width: 100%;
@@ -449,7 +461,7 @@ export default {
         &-icon {
             display: inline-block;
             margin-left: auto;
-            font-size: 1.2em;
+            font-size: 1em;
         }
     }
 
@@ -478,6 +490,7 @@ export default {
             display: flex;
             align-items: center;
         }
+
         &-grid {
             display: flex;
             align-items: flex-start;

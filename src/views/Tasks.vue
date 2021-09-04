@@ -326,6 +326,10 @@ export default {
             #{$statsSelectRoot}-button {
                 box-shadow: 0 3px 12px 5px rgba(0, 0, 0, 0.05);
             }
+
+            #{$statsSelectRoot}-button-icon {
+                transform: rotate(180deg);
+            }
         }
         &-button {
             @include base-button();
@@ -341,9 +345,11 @@ export default {
             }
 
             &-icon {
+                display: inline-block;
                 color: #193478;
                 font-size: 0.7em;
                 margin-left: 15px;
+                transition: ease .3s transform;
             }
         }
         &-list {

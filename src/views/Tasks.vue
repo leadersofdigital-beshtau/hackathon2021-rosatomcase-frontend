@@ -1,7 +1,9 @@
 <template>
     <div class="tasks">
         <div class="tasks__search-form">
-            <SearchForm></SearchForm>
+            <SearchForm
+            placeholder="Введите запрос"
+            ></SearchForm>
         </div>
         <div class="tasks__actions">
             <div class="tasks__actions-item">
@@ -44,7 +46,7 @@
         </div>
         <section class="tasks__tasks">
             <h2 class="tasks__title">
-                Задания
+                Текущие задания
             </h2>
             <div class="tasks__tasks-list">
                 <div
@@ -216,12 +218,6 @@ export default {
         const doughnutChart = {
             type: "doughnut",
             data: {
-                // labels: [
-                //     "Количество договоров, заключенных заказчиком по результатам закупки",
-                //     "Количество договоров, заключенных закупки у единственного поставщика",
-                //     "Общая стоимость договоров, заключенных по результатам закупки",
-                //     "Количество договоров закупки, признанные несостоявшимися"
-                // ],
                 datasets: [
                     {
                         backgroundColor: ["#3675B3", "#193478", "#131F3D"],
@@ -488,6 +484,7 @@ export default {
         }
 
         &-icon {
+            pointer-events: none;
             color: #193478;
             right: 15px;
             top: 50%;

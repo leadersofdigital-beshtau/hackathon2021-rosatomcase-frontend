@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import Supply from '../views/Supply.vue'
+import Provaider from '../views/Supply.vue'
 import About from '../views/About.vue'
 import Dashboard from "../views/Dashboard";
 
@@ -27,9 +27,9 @@ const routes = [
 		},
   },
   {
-    path: '/supply',
-    name: 'Supply',
-    component: Supply,
+    path: '/provaider',
+    name: 'Provaider',
+    component: Provaider,
 		meta: {
 			key: 3,
 		},

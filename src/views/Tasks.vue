@@ -42,12 +42,24 @@
                 </button>
             </div>
         </div>
-        <div class="tasks__tasks">
-            <div v-for="task in tasks" :key="task.id" class="tasks__tasks-item">
-                <TaskPreview :task="task"></TaskPreview>
+        <section class="tasks__tasks">
+            <h2 class="tasks__title">
+                Задания
+            </h2>
+            <div class="tasks__tasks-list">
+                <div
+                    v-for="task in tasks"
+                    :key="task.id"
+                    class="tasks__tasks-item"
+                >
+                    <TaskPreview :task="task"></TaskPreview>
+                </div>
             </div>
-        </div>
-        <div class="tasks__stats">
+        </section>
+        <section class="tasks__stats">
+            <h2 class="tasks__title">
+                Статистика
+            </h2>
             <div class="tasks__stats-head">
                 <div class="tasks__stats-datepicker">
                     <label class="tasks__stats-datepicker-label"
@@ -178,7 +190,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 </template>
 
@@ -276,10 +288,15 @@ export default {
 .tasks {
     --vdp-selected-bg-color: #1c3b80;
     --vdp-hover-bg-color: #678ddf;
-    
+
+    &__title {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
     &__actions {
         display: flex;
-        margin-bottom: 40px;
+        margin-bottom: 68px;
 
         &-item {
             margin-right: 30px;
@@ -391,9 +408,11 @@ export default {
     }
 
     &__tasks {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0 -20px 40px -20px;
+        &-list {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -20px 40px -20px;
+        }
 
         &-item {
             width: 475px;

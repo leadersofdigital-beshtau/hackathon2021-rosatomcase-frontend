@@ -31,18 +31,23 @@ export default {
 .dashboard {
     &__grid {
         display: flex;
+        align-items: stretch;;
     }
 
     &__sidebar {
-        max-width: 290px;
-        width: 290px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        max-width: 100%;
+        min-width: 290px;
         background: #ffffff;
         box-shadow: 0 3px 12px 5px rgba(0, 0, 0, .05);
     }
 
     &__main {
         flex: 1;
-        padding: 99px 104px;
+        padding: 99px 104px 99px 380px;
     }
 
     &__container {

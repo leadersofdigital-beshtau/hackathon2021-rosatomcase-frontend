@@ -13,13 +13,13 @@
                     <i class="icon-gear"></i>
                 </button>
                 <div class="sidebar__profile-image">
-                    <img src="@/assets/avatar.jpeg" alt="Фамилия Имя" />
+                    <img src="@/assets/avatar.jpeg" alt="{{ user.name }}" />
                 </div>
                 <button class="sidebar__profile-button">
                     <i class="icon-bell"></i>
                 </button>
             </div>
-            <div class="sidebar__profile-name">Фамилия Имя</div>
+            <div class="sidebar__profile-name">{{ user.name }}</div>
         </div>
         <nav class="sidebar__nav">
             <ul class="sidebar__list">
@@ -50,12 +50,15 @@ export default {
     name: "Dashboard",
     data() {
         return {
+            user: {
+                name: 'Пётр Иванов'
+            },
             menuItems: [
                 {
                     id: "mailing",
                     title: "Рассылка",
                     icon: "mailing",
-                    to: "/mailing"
+                    to: "/dashboard/mailing"
                 },
                 {
                     id: "provider",
@@ -73,37 +76,37 @@ export default {
                     id: "reports",
                     title: "Отчеты",
                     icon: "doc-edit",
-                    to: "/reports"
+                    to: "/dashboard/reports"
                 },
                 {
                     id: "search",
                     title: "История поиска",
                     icon: "doc-search",
-                    to: "/search"
+                    to: "/dashboard/search"
                 },
                 {
                     id: "discussions",
                     title: "Обсуждения",
                     icon: "discussion",
-                    to: "/discussions"
+                    to: "/dashboard/discussions"
                 },
                 {
                     id: "education",
                     title: "Обучение",
                     icon: "education",
-                    to: "/education"
+                    to: "/dashboard/education"
                 },
                 {
                     id: "docs",
                     title: "Документы",
                     icon: "docs",
-                    to: "/docs"
+                    to: "/dashboard/docs"
                 },
                 {
                     id: "subscriptions",
                     title: "Мои подписки",
                     icon: "fav-star",
-                    to: "/subscriptions"
+                    to: "/dashboard/subscriptions"
                 }
             ]
         };
@@ -133,7 +136,7 @@ export default {
 
         &-button {
             @include base-button();
-            margin-top: 55px;
+            margin-top: 10px;
             color: #193478;
             font-size: 25px;
         }
@@ -165,8 +168,8 @@ export default {
             img {
                 display: block;
                 border-radius: 50%;
-                width: 125px;
-                height: 125px;
+                width: 75px;
+                height: 75px;
             }
         }
     }

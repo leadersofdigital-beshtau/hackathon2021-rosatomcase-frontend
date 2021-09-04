@@ -1,5 +1,5 @@
 <template>
-    <aside class="sidebar">
+    <div class="sidebar">
         <div class="sidebar__logo">
             <img
                 src="@/assets/rosatom_logo.png"
@@ -42,7 +42,7 @@
                 </li>
             </ul>
         </nav>
-    </aside>
+    </div>
 </template>
 
 <script>
@@ -125,7 +125,12 @@ export default {
     background-color: #f8f7fd;
 
     &__logo {
-        padding: 24px 30px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 0 20px;
         background-color: #f9f9fd;
     }
 

@@ -16,7 +16,8 @@ const routes = [
         name: "Mailing",
         component: Mailing,
         meta: {
-            key: 1
+            key: 1,
+            title: 'Рассылка',
         }
     },
     {
@@ -42,7 +43,8 @@ const routes = [
         name: "Reports",
         component: Reports,
         meta: {
-            key: 4
+            key: 4,
+            title: 'Отчеты',
         }
     },
     {
@@ -50,7 +52,8 @@ const routes = [
         name: "Search",
         component: Search,
         meta: {
-            key: 5
+            key: 5,
+            title: 'История поиска',
         }
     },
     {
@@ -58,7 +61,8 @@ const routes = [
         name: "Discussions",
         component: Discussions,
         meta: {
-            key: 6
+            key: 6,
+            title: 'Обсуждения',
         }
     },
     {
@@ -66,7 +70,8 @@ const routes = [
         name: "Education",
         component: Education,
         meta: {
-            key: 7
+            key: 7,
+            title: 'Обучение',
         }
     },
     {
@@ -74,7 +79,8 @@ const routes = [
         name: "Docs",
         component: Docs,
         meta: {
-            key: 7
+            key: 7,
+            title: 'Документы',
         }
     },
     {
@@ -82,7 +88,8 @@ const routes = [
         name: "Subscriptions",
         component: Subscriptions,
         meta: {
-            key: 8
+            key: 8,
+            title: 'Мои подписки',
         }
     }
 ];

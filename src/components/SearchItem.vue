@@ -31,7 +31,7 @@
                                     class="search-item__actions-button-icon icon-close"
                                 ></i>
                                 <span class="search-item__actions-button-text"
-                                    >Удалить из истори</span
+                                    >Удалить из истории</span
                                 >
                             </button>
                         </div>

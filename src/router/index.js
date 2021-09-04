@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Supply from '../views/Supply.vue'
 import About from '../views/About.vue'
+import Dashboard from "../views/Dashboard";
 
 const routes = [
   {
@@ -11,6 +12,11 @@ const routes = [
 		meta: {
 			key: 1,
 		},
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard
   },
   {
     path: '/about',

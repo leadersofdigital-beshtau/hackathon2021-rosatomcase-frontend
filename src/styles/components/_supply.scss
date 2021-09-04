@@ -1,0 +1,20 @@
+.supply {
+
+  &__search {
+    margin-bottom: 49px;
+  }
+
+  &__tabs-list {
+    display: flex;
+  }
+
+  &__tabs-item {
+    margin-right: 40px;
+  }
+  
+  &__tabs-btn {
+    font-size: 24px;
+    line-height: 29px;
+    color: #07173E;
+  }
+}

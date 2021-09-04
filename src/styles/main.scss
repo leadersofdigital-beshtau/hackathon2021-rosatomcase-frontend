@@ -1,8 +1,14 @@
+@import 'variables';
+@import 'mixins';
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: $font-family-main;
 }
 
-@import 'variables';
-@import 'mixins';
+@import "icons/style";
+
+// components
+@import "components/supply";

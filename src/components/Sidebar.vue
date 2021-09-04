@@ -147,6 +147,8 @@ export default {
             justify-content: center;
             width: 100%;
             margin: 0 auto;
+            background: #FFFFFF;
+            border-radius: 10px;
         }
 
         &-name {

@@ -15,15 +15,36 @@
                                 <span class="dashboard__action-button-text">
                                     Новая заявка
                                 </span>
-                                <i class="icon-plus"></i>
-                            </button >
+                                <i class="dashboard__action-button-icon icon-plus"></i>
+                            </button>
                         </div>
                         <div class="dashboard__actions-item">
                             <button class="dashboard__action-button">
                                 <span class="dashboard__action-button-text">
                                     Загрузить заявки
                                 </span>
-                                <i class="icon-plus"></i>
+                                <i class="dashboard__action-button-icon icon-plus"></i>
+                            </button>
+                        </div>
+                        <div class="dashboard__actions-item">
+                            <button class="dashboard__action-button">
+                                <span class="dashboard__action-button-text">
+                                    Завершенные заявки
+                                </span>
+                            </button>
+                        </div>
+                        <div class="dashboard__actions-item">
+                            <button class="dashboard__action-button">
+                                <span class="dashboard__action-button-text">
+                                    Заявки в процессе
+                                </span>
+                            </button>
+                        </div>
+                        <div class="dashboard__actions-item">
+                            <button class="dashboard__action-button">
+                                <span class="dashboard__action-button-text">
+                                    Приостановленные
+                                </span>
                             </button>
                         </div>
                     </div>
@@ -55,12 +76,13 @@ export default {
     &__sidebar {
         max-width: 290px;
         width: 290px;
+        background: #ffffff;
+        box-shadow: 0 3px 12px 5px rgba(0, 0, 0, .05);
     }
 
     &__main {
         flex: 1;
         padding: 99px 104px;
-        background-color: aliceblue;
     }
 
     &__container {
@@ -70,6 +92,51 @@ export default {
 
     &__actions {
         display: flex;
+
+        &-item {
+            margin-right: 30px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    &__action-button {
+        @include base-button();
+        border: 1px solid #193478;
+        padding: 24px 19px;
+        width: 250px;
+        text-align: left;
+        border-radius: 10px;
+        display: inline-flex;
+        justify-content: space-between;
+        color: #3675B3;
+
+        &:hover {
+            transition: ease background-color .2s;
+            background-color: #3675B3;
+            color: #ffffff;
+            border-color: #3675B3;
+        }
+
+        &-text {
+            font-style: normal;
+            font-weight: normal;
+            font-size: 18px;
+            line-height: 22px;
+        }
+
+        &-icon {
+            display: inline-block;
+            margin-left: auto;
+            font-size: 1.2em;
+        }
+    }
+
+    &__search-form {
+        max-width: 1100px;
+        margin-bottom: 52px;
     }
 }
 </style>

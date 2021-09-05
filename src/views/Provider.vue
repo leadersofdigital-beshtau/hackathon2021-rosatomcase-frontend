@@ -204,8 +204,8 @@ import Pagination from "v-pagination-3";
 export default {
     props: {
         taskId: {
-            type: Number
-        }
+            type: Number,
+        },
     },
     components: {
         Pagination,
@@ -235,7 +235,7 @@ export default {
             currentPage: 1,
             elemsPerPage: 10,
 
-            dataBase: null,
+            dataBase: [],
             categoria: "",
             dataSearch: [],
         };
@@ -247,7 +247,16 @@ export default {
                 url: `http://217.13.223.130:3389/Hakaton_09_2021_odata/odata/standard.odata/Catalog_%D0%92%D0%BD%D0%B5%D1%88%D0%BD%D0%B8%D0%B5%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B8?$format=application/json`,
             })
                 .then(({ data }) => {
-                    this.dataBase = data.value;
+                    let d = data.value;
+                    let ind = 1;
+                    d.forEach(item => {
+                        this.dataBase.push({
+                            id: ind++,
+                            Description: item.Description,
+                            Ref_Key: item.Ref_Key,
+                        });
+                    });
+                    this.dataBase.splice(1, 1)
                     if (this.taskId === undefined) {
                         this.tabs(this.dataBase[0].Ref_Key, 0);
                     } else {
@@ -284,7 +293,6 @@ export default {
             this.categoria = "";
         },
         tabs(id, i) {
-            console.log(id)
             qsAll(".supply__tabs-btn").forEach((el, index) => {
                 el.classList.remove("active");
                 if (i === index) {

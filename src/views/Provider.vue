@@ -83,7 +83,7 @@
         </div>
 
         <ul class="supply__list">
-            <li class="supply__item" v-for="item in dataSearch" :key="item.id">
+            <li class="supply__item" v-for="item in elemsOfPage" :key="item.id">
                 <div class="supply__header">
                     <h2 class="supply__item-title">
                         {{ item.title }}
@@ -170,108 +170,52 @@
                 </div>
             </li>
         </ul>
-        <ul class="supply__list">
-            <li class="supply__item" v-for="item in dataSearch" :key="item.id">
-                <div class="supply__header">
-                    <h2 class="supply__item-title">
-                        {{ item.title }}
-                    </h2>
-                    <form class="supply__header-controls">
-                        <label class="supply__label-submit supply__label">
-                            <input
-                                class="supply__checkbox supply__checkbox-submit"
-                                type="checkbox"
-                                name="check"
-                                :checked="item.query == true"
-                            />
-                        </label>
-                        <label class="supply__label-save supply__label">
-                            <input
-                                class="supply__checkbox supply__checkbox-save"
-                                type="checkbox"
-                                name="save"
-                                :checked="item.save == false"
-                            />
-                        </label>
-                    </form>
-                </div>
-                <div class="supply__item-inner">
-                    <img class="supply__item-img" :src="item.img" alt="logo" />
-                    <div class="supply__item-info">
-                        <h3 class="supply__item-title">
-                            {{ item.subtitle }}
-                        </h3>
-                        <ul class="supply__item-list">
-                            <li class="supply__item-elem">
-                                <a
-                                    class="supply__item-link"
-                                    :href="item.hrefReviews"
-                                >
-                                    Отзывы
-                                </a>
-                            </li>
-                            <li class="supply__item-elem">
-                                <a
-                                    class="supply__item-link"
-                                    :href="item.hrefTurn"
-                                >
-                                    Обороты
-                                </a>
-                            </li>
-                            <li class="supply__item-elem">
-                                <a
-                                    class="supply__item-link"
-                                    :href="item.hrefRisk"
-                                >
-                                    СПАРК риски
-                                </a>
-                            </li>
-                            <li class="supply__item-elem">
-                                <a
-                                    class="supply__item-link"
-                                    :href="item.hrefContacts"
-                                >
-                                    Контактная информация
-                                </a>
-                            </li>
-                            <li class="supply__item-elem">
-                                <a
-                                    class="supply__item-link"
-                                    :href="item.hrefInfo"
-                                >
-                                    Информация о сотрудничестве по другим
-                                    проектам
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="supply__answer">
-                        <p
-                            :class="{
-                                active: item.answer == true,
-                                'supply__answer-alert': true,
-                            }"
-                        >
-                            Поступил ответ на приглашение
-                        </p>
-                    </div>
-                </div>
-            </li>
-        </ul>
+        <Pagination
+            v-model="currentPage"
+            :records="dataSearch.length"
+            :per-page="totalPages.length"
+        ></Pagination>
     </div>
 </template>
 
 <script>
 import { qs, qsAll } from "@/helpers/index.js";
+// import axios from "axios";
+import Pagination from "v-pagination-3";
 export default {
+    components: {
+        Pagination,
+    },
+    computed: {
+        elemsOfPage() {
+            let elems = this.dataSearch.slice(0);
+            return elems.splice(
+                (this.currentPage - 1) * this.elemsPerPage,
+                this.elemsPerPage
+            );
+        },
+        totalPages() {
+            let elems = this.dataSearch.slice(0);
+            return elems.splice(
+                (this.page - 1) * this.elemsPerPage,
+                this.elemsPerPage
+            );
+        },
+    },
+    mounted() {
+        this.tabs(0);
+    },
     data() {
         return {
+            page: 1,
+            currentPage: 1,
+            elemsPerPage: 10,
             categoria: "",
             tabsBtn: ["Поставка ПГС", "Сварочные работы"],
             dataSearch: [
                 {
                     id: 0,
-                    title: 'Акционерное общество "Уральский электромеханический завод"',
+                    title: 'aАкционерное общество "Уральский электромеханический завод"',
                     subtitle: 'АО "УЭМЗ"',
                     img: require("@/assets/img/del/item_supply.png"),
                     hrefReviews: "#",
@@ -325,6 +269,132 @@ export default {
                     query: false,
                     save: false,
                 },
+                {
+                    id: 4,
+                    title: 'Акционерное общество "Уральский электромеханический завод"',
+                    subtitle: 'АО "УЭМЗ"',
+                    img: require("@/assets/img/del/item_supply.png"),
+                    hrefReviews: "#",
+                    hrefTurn: "#",
+                    hrefRisk: "#",
+                    hrefContacts: "#",
+                    hrefInfo: "#",
+                    answer: true,
+                    query: true,
+                    save: false,
+                },
+                {
+                    id: 5,
+                    title: 'Акционерное общество "Уральский электромеханический завод"',
+                    subtitle: 'АО "УЭМЗ"',
+                    img: require("@/assets/img/del/item_supply.png"),
+                    hrefReviews: "#",
+                    hrefTurn: "#",
+                    hrefRisk: "#",
+                    hrefContacts: "#",
+                    hrefInfo: "#",
+                    answer: true,
+                    query: true,
+                    save: false,
+                },
+                {
+                    id: 6,
+                    title: 'Акционерное общество "Уральский электромеханический завод"',
+                    subtitle: 'АО "УЭМЗ"',
+                    img: require("@/assets/img/del/item_supply.png"),
+                    hrefReviews: "#",
+                    hrefTurn: "#",
+                    hrefRisk: "#",
+                    hrefContacts: "#",
+                    hrefInfo: "#",
+                    answer: false,
+                    query: false,
+                    save: false,
+                },
+                {
+                    id: 7,
+                    title: 'Акционерное общество "Уральский электромеханический завод"',
+                    subtitle: 'АО "УЭМЗ"',
+                    img: require("@/assets/img/del/item_supply.png"),
+                    hrefReviews: "#",
+                    hrefTurn: "#",
+                    hrefRisk: "#",
+                    hrefContacts: "#",
+                    hrefInfo: "#",
+                    answer: false,
+                    query: false,
+                    save: false,
+                },
+                {
+                    id: 8,
+                    title: 'Акционерное общество "Уральский электромеханический завод"',
+                    subtitle: 'АО "УЭМЗ"',
+                    img: require("@/assets/img/del/item_supply.png"),
+                    hrefReviews: "#",
+                    hrefTurn: "#",
+                    hrefRisk: "#",
+                    hrefContacts: "#",
+                    hrefInfo: "#",
+                    answer: true,
+                    query: true,
+                    save: false,
+                },
+                {
+                    id: 9,
+                    title: 'Акционерное общество "Уральский электромеханический завод"',
+                    subtitle: 'АО "УЭМЗ"',
+                    img: require("@/assets/img/del/item_supply.png"),
+                    hrefReviews: "#",
+                    hrefTurn: "#",
+                    hrefRisk: "#",
+                    hrefContacts: "#",
+                    hrefInfo: "#",
+                    answer: true,
+                    query: true,
+                    save: false,
+                },
+                {
+                    id: 10,
+                    title: 'Акционерное общество "Уральский электромеханический завод"',
+                    subtitle: 'АО "УЭМЗ"',
+                    img: require("@/assets/img/del/item_supply.png"),
+                    hrefReviews: "#",
+                    hrefTurn: "#",
+                    hrefRisk: "#",
+                    hrefContacts: "#",
+                    hrefInfo: "#",
+                    answer: false,
+                    query: false,
+                    save: false,
+                },
+                {
+                    id: 11,
+                    title: 'Акционерное общество "Уральский электромеханический завод"',
+                    subtitle: 'АО "УЭМЗ"',
+                    img: require("@/assets/img/del/item_supply.png"),
+                    hrefReviews: "#",
+                    hrefTurn: "#",
+                    hrefRisk: "#",
+                    hrefContacts: "#",
+                    hrefInfo: "#",
+                    answer: false,
+                    query: false,
+                    save: false,
+                },
+                {
+                    id: 12,
+                    title: 'Акционерное общество "Уральский электромеханический завод"',
+                    subtitle: 'АО "УЭМЗ"',
+                    img: require("@/assets/img/del/item_supply.png"),
+                    hrefReviews: "#",
+                    hrefTurn: "#",
+                    hrefRisk: "#",
+                    hrefContacts: "#",
+                    hrefInfo: "#",
+                    answer: true,
+                    query: true,
+                    save: false,
+                },
                 // {
                 //   id: 0,
                 //   title: '',
@@ -341,8 +411,24 @@ export default {
         };
     },
     methods: {
+        // reloadFansList() {
+        //     axios
+        //         .post(
+        //             `http://217.13.223.130:3389/Hakaton_09_2021_odata/odata/standard.odata/Catalog_ВнешниеЗадачи?$format=application/json`,
+        //             {
+        //                 Ref_Key: "6e1f577f-0d85-11ec-ab0f-000c29a52d77",
+        //             }
+        //         )
+        //         .then(({ data }) => {
+        //             console.log(data);
+        //         })
+        //         .catch((error) => {
+        //             console.log(error.response.data.message);
+        //         });
+        // },
         inputCategories(e) {
             this.tabsBtn.unshift(e.target.value);
+            console.log(this.tabsBtn)
         },
         focus() {
             let input = qs(".search__input");
@@ -357,14 +443,6 @@ export default {
                     this.categoria = this.tabsBtn[i];
                 }
             });
-            qsAll(".supply__list").forEach((el, index) => {
-                el.classList.add("hide");
-                el.classList.remove("show", "fade");
-                if (i === index) {
-                    el.classList.remove("hide");
-                    el.classList.add("show", "fade");
-                }
-            });
         },
         toggleCtegories() {
             let list = qs(".search__categories");
@@ -377,9 +455,6 @@ export default {
                 btn.classList.add("active");
             }
         },
-    },
-    mounted() {
-        this.tabs(0);
     },
 };
 </script>

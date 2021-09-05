@@ -1,13 +1,3 @@
-## Реализованная функциональность:
-1. One
-2. Two
-3. Three
-
-## Особенность проекта в следующем:
-1. One
-2. Two
-3. Three
-
 ## Основной стек технологий
 * HTML, CSS, JavaScript
 * SASS, PostCSS
@@ -55,5 +45,5 @@ npm run build
 
 ## Разработчики
 
-Соколов Артем, fullstack-разработчик https://t.me/artyomsklv
-Нагорняк Вадим, front-end-разработчик https://t.me/vdmngrnk
+* Соколов Артем, fullstack-разработчик https://t.me/artyomsklv
+* Нагорняк Вадим, front-end-разработчик https://t.me/vdmngrnk

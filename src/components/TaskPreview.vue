@@ -42,7 +42,7 @@ export default {
             }
 
             const monthNames = [
-                'нваря',
+                'Января',
                 'Февраля',
                 'Марта',
                 'Апреля',

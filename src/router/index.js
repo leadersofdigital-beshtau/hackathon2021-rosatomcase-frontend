@@ -24,9 +24,10 @@ const routes = [
         path: "/dashboard/supply",
         name: "Supply",
         component: Supply,
+        props: true,
         meta: {
             key: 2,
-            title: "Поставщики"
+            title: "Поставщики",
         }
     },
     {

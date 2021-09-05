@@ -37,7 +37,7 @@ export default {
     name: 'Header',
     methods: {
         pushRoute(task) {
-            this.$router.push({ path: '/dashboard/supply', query: { taskId: task.id } })
+            this.$router.push({ name: 'Supply', params: { taskId: task.id } })
         }
     },
     props: {

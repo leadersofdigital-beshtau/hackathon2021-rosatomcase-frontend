@@ -1,188 +1,212 @@
 <template>
     <div class="supply">
-        <div class="search">
-            <div class="search__top">
-                <button class="search__btn" @click.prevent="toggleCtegories">
-                    Категории
-                </button>
-                <input
-                    class="search__input"
-                    type="text"
-                    @keyup.enter="inputCategories"
-                    v-model="categoria"
-                />
-            </div>
-            <div class="search__categories">
-                <ul class="search__categories-list">
-                    <li class="search__categories-item">
-                        <button class="search__categories-btn">
-                            Ремонт и строительство
-                        </button>
-                    </li>
-                    <li class="search__categories-item">
-                        <button class="search__categories-btn">
-                            Репетиторы и обучение
-                        </button>
-                    </li>
-                    <li class="search__categories-item">
-                        <button class="search__categories-btn">Юристы</button>
-                    </li>
-                    <li class="search__categories-item">
-                        <button class="search__categories-btn active">
-                            Ремонт и установка техники
-                        </button>
-                    </li>
-                    <li class="search__categories-item">
-                        <button class="search__categories-btn">
-                            Перевозки и курьеры
-                        </button>
-                    </li>
-                    <li class="search__categories-item">
-                        <button class="search__categories-btn">
-                            Компьютеры и IT
-                        </button>
-                    </li>
-                    <li class="search__categories-item">
-                        <button class="search__categories-btn active">
-                            Хозяйство и уборка
-                        </button>
-                    </li>
-                    <li class="search__categories-item">
-                        <button class="search__categories-btn">Красота</button>
-                    </li>
-                    <li class="search__categories-item">
-                        <button class="search__categories-btn">Аренда</button>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="supply__tabs">
-            <div class="supply__tabs__inner">
-                <ul class="supply__tabs-list">
-                    <li
-                        class="supply__tabs-item"
-                        v-for="(item, index) in tabsBtn"
-                        :key="index"
+        <div class="supply__content" v-if="elemsOfPage.length">
+            <div class="search">
+                <div class="search__top">
+                    <button
+                        class="search__btn"
+                        @click.prevent="toggleCtegories"
                     >
-                        <button
-                            class="supply__tabs-btn"
-                            @click.prevent="tabs(index)"
-                        >
-                            {{ item }}
-                        </button>
-                    </li>
-                    <li class="supply__tabs-item">
-                        <button class="supply__tabs-add" @click.prevent="focus">
-                            +
-                        </button>
-                    </li>
-                </ul>
-            </div>
-            <button class="supply__setting"></button>
-        </div>
-
-        <ul class="supply__list">
-            <li class="supply__item" v-for="item in elemsOfPage" :key="item.id">
-                <div class="supply__header">
-                    <h2 class="supply__item-title">
-                        {{ item.title }}
-                    </h2>
-                    <form class="supply__header-controls">
-                        <label class="supply__label-submit supply__label">
-                            <input
-                                class="supply__checkbox supply__checkbox-submit"
-                                type="checkbox"
-                                name="check"
-                                :checked="item.query == true"
-                            />
-                        </label>
-                        <label class="supply__label-save supply__label">
-                            <input
-                                class="supply__checkbox supply__checkbox-save"
-                                type="checkbox"
-                                name="save"
-                                :checked="item.save == false"
-                            />
-                        </label>
-                    </form>
+                        Категории
+                    </button>
+                    <input
+                        class="search__input"
+                        type="text"
+                        @keyup.enter="inputCategories"
+                        v-model="categoria"
+                    />
                 </div>
-                <div class="supply__item-inner">
-                    <img class="supply__item-img" :src="item.img" alt="logo" />
-                    <div class="supply__item-info">
-                        <h3 class="supply__item-title">
-                            {{ item.subtitle }}
-                        </h3>
+                <div class="search__categories">
+                    <ul class="search__categories-list">
+                        <li class="search__categories-item">
+                            <button class="search__categories-btn">
+                                Ремонт и строительство
+                            </button>
+                        </li>
+                        <li class="search__categories-item">
+                            <button class="search__categories-btn">
+                                Репетиторы и обучение
+                            </button>
+                        </li>
+                        <li class="search__categories-item">
+                            <button class="search__categories-btn">
+                                Юристы
+                            </button>
+                        </li>
+                        <li class="search__categories-item">
+                            <button class="search__categories-btn active">
+                                Ремонт и установка техники
+                            </button>
+                        </li>
+                        <li class="search__categories-item">
+                            <button class="search__categories-btn">
+                                Перевозки и курьеры
+                            </button>
+                        </li>
+                        <li class="search__categories-item">
+                            <button class="search__categories-btn">
+                                Компьютеры и IT
+                            </button>
+                        </li>
+                        <li class="search__categories-item">
+                            <button class="search__categories-btn active">
+                                Хозяйство и уборка
+                            </button>
+                        </li>
+                        <li class="search__categories-item">
+                            <button class="search__categories-btn">
+                                Красота
+                            </button>
+                        </li>
+                        <li class="search__categories-item">
+                            <button class="search__categories-btn">
+                                Аренда
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="supply__tabs">
+                <div class="supply__tabs__inner">
+                    <ul class="supply__tabs-list">
+                        <li
+                            class="supply__tabs-item"
+                            v-for="(item, index) in dataBase"
+                            :key="index"
+                        >
+                            <button
+                                class="supply__tabs-btn"
+                                @click.prevent="tabs(item.Ref_Key, index)"
+                            >
+                                {{ item.Description }}
+                            </button>
+                        </li>
+                        <li class="supply__tabs-item">
+                            <button
+                                class="supply__tabs-add"
+                                @click.prevent="focus"
+                            >
+                                +
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <!-- <button class="supply__setting"></button> -->
+            </div>
+
+            <ul class="supply__list">
+                <li
+                    class="supply__item"
+                    v-for="item in elemsOfPage"
+                    :key="item.id"
+                >
+                    <div class="supply__header">
+                        <h2 class="supply__item-title">
+                            {{ item.Наименование }}
+                        </h2>
+                        <form class="supply__header-controls">
+                            <label class="supply__label-submit supply__label">
+                                <input
+                                    class="
+                                        supply__checkbox supply__checkbox-submit
+                                    "
+                                    type="checkbox"
+                                    name="check"
+                                    :checked="item.query == true"
+                                />
+                            </label>
+                            <label class="supply__label-save supply__label">
+                                <input
+                                    class="
+                                        supply__checkbox supply__checkbox-save
+                                    "
+                                    type="checkbox"
+                                    name="save"
+                                    :checked="item.save == false"
+                                />
+                            </label>
+                        </form>
+                    </div>
+                    <div class="supply__item-inner">
+                        <img
+                            class="supply__item-img"
+                            src="@/assets/img/del/item_supply.png"
+                            alt="logo"
+                        />
                         <ul class="supply__item-list">
                             <li class="supply__item-elem">
-                                <a
-                                    class="supply__item-link"
-                                    :href="item.hrefReviews"
-                                >
+                                <a class="supply__item-link">
                                     Отзывы
+                                    <span class="supply__item-drop">
+                                        Телефон:
+                                        {{
+                                            item.КонтактнаяИнформация[0].Телефон
+                                        }}
+                                    </span>
                                 </a>
                             </li>
                             <li class="supply__item-elem">
-                                <a
-                                    class="supply__item-link"
-                                    :href="item.hrefTurn"
-                                >
+                                <a class="supply__item-link">
                                     Обороты
+                                    <span class="supply__item-drop">
+                                        За 2020-й год 15 млн 145 тыс. руб
+                                    </span>
                                 </a>
                             </li>
                             <li class="supply__item-elem">
-                                <a
-                                    class="supply__item-link"
-                                    :href="item.hrefRisk"
-                                >
+                                <a class="supply__item-link">
                                     СПАРК риски
+                                    <span class="supply__item-drop">
+                                        Низкий риск (1)
+                                    </span>
                                 </a>
                             </li>
                             <li class="supply__item-elem">
-                                <a
-                                    class="supply__item-link"
-                                    :href="item.hrefContacts"
-                                >
-                                    Контактная информация
-                                </a>
-                            </li>
-                            <li class="supply__item-elem">
-                                <a
-                                    class="supply__item-link"
-                                    :href="item.hrefInfo"
-                                >
-                                    Информация о сотрудничестве по другим
-                                    проектам
+                                <a class="supply__item-link">
+                                    Контактная инфомация
+                                    <span class="supply__item-drop">
+                                        Телефон:
+                                        {{
+                                            item.КонтактнаяИнформация[0].Телефон
+                                        }}
+                                    </span>
                                 </a>
                             </li>
                         </ul>
+                        <div class="supply__answer">
+                            <button
+                                :class="[
+                                    { active: item.answer == true },
+                                    'supply__answer-alert',
+                                ]"
+                            >
+                                Отправить приглашение
+                            </button>
+                        </div>
                     </div>
-                    <div class="supply__answer">
-                        <p
-                            :class="{
-                                active: item.answer == true,
-                                'supply__answer-alert': true,
-                            }"
-                        >
-                            Поступил ответ на приглашение
-                        </p>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        <Pagination
-            v-model="currentPage"
-            :records="dataSearch.length"
-            :per-page="totalPages.length"
-        ></Pagination>
+                </li>
+            </ul>
+            <Pagination
+                v-model="currentPage"
+                :records="dataSearch.length"
+                :per-page="totalPages.length"
+            ></Pagination>
+        </div>
+        <div class="loader" v-if="!elemsOfPage.length"></div>
     </div>
 </template>
 
 <script>
 import { qs, qsAll } from "@/helpers/index.js";
-// import axios from "axios";
+import axios from "axios";
 import Pagination from "v-pagination-3";
 export default {
+    props: {
+        taskId: {
+            type: Number
+        }
+    },
     components: {
         Pagination,
     },
@@ -202,247 +226,72 @@ export default {
             );
         },
     },
-    mounted() {
-        this.tabs(0);
+    created() {
+        this.getData();
     },
     data() {
         return {
             page: 1,
             currentPage: 1,
             elemsPerPage: 10,
+
+            dataBase: null,
             categoria: "",
-            tabsBtn: ["Поставка ПГС", "Сварочные работы"],
-            dataSearch: [
-                {
-                    id: 0,
-                    title: 'aАкционерное общество "Уральский электромеханический завод"',
-                    subtitle: 'АО "УЭМЗ"',
-                    img: require("@/assets/img/del/item_supply.png"),
-                    hrefReviews: "#",
-                    hrefTurn: "#",
-                    hrefRisk: "#",
-                    hrefContacts: "#",
-                    hrefInfo: "#",
-                    answer: true,
-                    query: true,
-                    save: false,
-                },
-                {
-                    id: 1,
-                    title: 'Акционерное общество "Уральский электромеханический завод"',
-                    subtitle: 'АО "УЭМЗ"',
-                    img: require("@/assets/img/del/item_supply.png"),
-                    hrefReviews: "#",
-                    hrefTurn: "#",
-                    hrefRisk: "#",
-                    hrefContacts: "#",
-                    hrefInfo: "#",
-                    answer: true,
-                    query: true,
-                    save: false,
-                },
-                {
-                    id: 2,
-                    title: 'Акционерное общество "Уральский электромеханический завод"',
-                    subtitle: 'АО "УЭМЗ"',
-                    img: require("@/assets/img/del/item_supply.png"),
-                    hrefReviews: "#",
-                    hrefTurn: "#",
-                    hrefRisk: "#",
-                    hrefContacts: "#",
-                    hrefInfo: "#",
-                    answer: false,
-                    query: false,
-                    save: false,
-                },
-                {
-                    id: 3,
-                    title: 'Акционерное общество "Уральский электромеханический завод"',
-                    subtitle: 'АО "УЭМЗ"',
-                    img: require("@/assets/img/del/item_supply.png"),
-                    hrefReviews: "#",
-                    hrefTurn: "#",
-                    hrefRisk: "#",
-                    hrefContacts: "#",
-                    hrefInfo: "#",
-                    answer: false,
-                    query: false,
-                    save: false,
-                },
-                {
-                    id: 4,
-                    title: 'Акционерное общество "Уральский электромеханический завод"',
-                    subtitle: 'АО "УЭМЗ"',
-                    img: require("@/assets/img/del/item_supply.png"),
-                    hrefReviews: "#",
-                    hrefTurn: "#",
-                    hrefRisk: "#",
-                    hrefContacts: "#",
-                    hrefInfo: "#",
-                    answer: true,
-                    query: true,
-                    save: false,
-                },
-                {
-                    id: 5,
-                    title: 'Акционерное общество "Уральский электромеханический завод"',
-                    subtitle: 'АО "УЭМЗ"',
-                    img: require("@/assets/img/del/item_supply.png"),
-                    hrefReviews: "#",
-                    hrefTurn: "#",
-                    hrefRisk: "#",
-                    hrefContacts: "#",
-                    hrefInfo: "#",
-                    answer: true,
-                    query: true,
-                    save: false,
-                },
-                {
-                    id: 6,
-                    title: 'Акционерное общество "Уральский электромеханический завод"',
-                    subtitle: 'АО "УЭМЗ"',
-                    img: require("@/assets/img/del/item_supply.png"),
-                    hrefReviews: "#",
-                    hrefTurn: "#",
-                    hrefRisk: "#",
-                    hrefContacts: "#",
-                    hrefInfo: "#",
-                    answer: false,
-                    query: false,
-                    save: false,
-                },
-                {
-                    id: 7,
-                    title: 'Акционерное общество "Уральский электромеханический завод"',
-                    subtitle: 'АО "УЭМЗ"',
-                    img: require("@/assets/img/del/item_supply.png"),
-                    hrefReviews: "#",
-                    hrefTurn: "#",
-                    hrefRisk: "#",
-                    hrefContacts: "#",
-                    hrefInfo: "#",
-                    answer: false,
-                    query: false,
-                    save: false,
-                },
-                {
-                    id: 8,
-                    title: 'Акционерное общество "Уральский электромеханический завод"',
-                    subtitle: 'АО "УЭМЗ"',
-                    img: require("@/assets/img/del/item_supply.png"),
-                    hrefReviews: "#",
-                    hrefTurn: "#",
-                    hrefRisk: "#",
-                    hrefContacts: "#",
-                    hrefInfo: "#",
-                    answer: true,
-                    query: true,
-                    save: false,
-                },
-                {
-                    id: 9,
-                    title: 'Акционерное общество "Уральский электромеханический завод"',
-                    subtitle: 'АО "УЭМЗ"',
-                    img: require("@/assets/img/del/item_supply.png"),
-                    hrefReviews: "#",
-                    hrefTurn: "#",
-                    hrefRisk: "#",
-                    hrefContacts: "#",
-                    hrefInfo: "#",
-                    answer: true,
-                    query: true,
-                    save: false,
-                },
-                {
-                    id: 10,
-                    title: 'Акционерное общество "Уральский электромеханический завод"',
-                    subtitle: 'АО "УЭМЗ"',
-                    img: require("@/assets/img/del/item_supply.png"),
-                    hrefReviews: "#",
-                    hrefTurn: "#",
-                    hrefRisk: "#",
-                    hrefContacts: "#",
-                    hrefInfo: "#",
-                    answer: false,
-                    query: false,
-                    save: false,
-                },
-                {
-                    id: 11,
-                    title: 'Акционерное общество "Уральский электромеханический завод"',
-                    subtitle: 'АО "УЭМЗ"',
-                    img: require("@/assets/img/del/item_supply.png"),
-                    hrefReviews: "#",
-                    hrefTurn: "#",
-                    hrefRisk: "#",
-                    hrefContacts: "#",
-                    hrefInfo: "#",
-                    answer: false,
-                    query: false,
-                    save: false,
-                },
-                {
-                    id: 12,
-                    title: 'Акционерное общество "Уральский электромеханический завод"',
-                    subtitle: 'АО "УЭМЗ"',
-                    img: require("@/assets/img/del/item_supply.png"),
-                    hrefReviews: "#",
-                    hrefTurn: "#",
-                    hrefRisk: "#",
-                    hrefContacts: "#",
-                    hrefInfo: "#",
-                    answer: true,
-                    query: true,
-                    save: false,
-                },
-                // {
-                //   id: 0,
-                //   title: '',
-                //   subtitle: '',
-                //   img: '@/assets/img/del/item_supply.png',
-                //   hrefReviews: '',
-                //   hrefTurn: '',
-                //   hrefRisk: '',
-                //   hrefContacts: '',
-                //   hrefInfo: '',
-                //   answer: false,
-                // }
-            ],
+            dataSearch: [],
         };
     },
     methods: {
-        // reloadFansList() {
-        //     axios
-        //         .post(
-        //             `http://217.13.223.130:3389/Hakaton_09_2021_odata/odata/standard.odata/Catalog_ВнешниеЗадачи?$format=application/json`,
-        //             {
-        //                 Ref_Key: "6e1f577f-0d85-11ec-ab0f-000c29a52d77",
-        //             }
-        //         )
-        //         .then(({ data }) => {
-        //             console.log(data);
-        //         })
-        //         .catch((error) => {
-        //             console.log(error.response.data.message);
-        //         });
-        // },
+        getData() {
+            axios({
+                method: "GET",
+                url: `http://217.13.223.130:3389/Hakaton_09_2021_odata/odata/standard.odata/Catalog_%D0%92%D0%BD%D0%B5%D1%88%D0%BD%D0%B8%D0%B5%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B8?$format=application/json`,
+            })
+                .then(({ data }) => {
+                    this.dataBase = data.value;
+                    if (this.taskId === undefined) {
+                        this.tabs(this.dataBase[0].Ref_Key, 0);
+                    } else {
+                        this.tabs(this.taskId, 0);
+                    }
+                })
+                .catch((error) => {
+                    console.log(error.response.data.message);
+                });
+        },
+        reloadFansList(id) {
+            axios({
+                method: "POST",
+                url: `http://217.13.223.130:3389/Hakaton_09_2021_odata/hs/suppliers/GetSuppliersByTask`,
+                data: id,
+                headers: {
+                    "Content-Type": "text/plain",
+                },
+            })
+                .then(({ data }) => {
+                    this.categoria = data.SearchQuery;
+                    this.dataSearch = data.Suppliers;
+                })
+                .catch((error) => {
+                    console.log(error.response.data.message);
+                });
+        },
         inputCategories(e) {
             this.tabsBtn.unshift(e.target.value);
-            console.log(this.tabsBtn)
         },
         focus() {
             let input = qs(".search__input");
             input.focus();
             this.categoria = "";
         },
-        tabs(i) {
+        tabs(id, i) {
+            console.log(id)
             qsAll(".supply__tabs-btn").forEach((el, index) => {
                 el.classList.remove("active");
                 if (i === index) {
                     el.classList.add("active");
-                    this.categoria = this.tabsBtn[i];
                 }
             });
+            this.reloadFansList(id);
         },
         toggleCtegories() {
             let list = qs(".search__categories");
@@ -572,6 +421,7 @@ export default {
 
         &-list {
             margin-top: vw(17);
+            width: 100%;
         }
 
         &-elem {
@@ -584,6 +434,46 @@ export default {
 
         &-link {
             font-family: $ff-nova;
+            position: relative;
+            display: block;
+            line-height: 200%;
+
+            &:hover {
+                .supply__item-drop {
+                    max-height: vw(200);
+                    padding: vw(20) vw(30);
+                    opacity: 1;
+                }
+            }
+        }
+
+        &-drop {
+            position: absolute;
+            z-index: 10;
+            background: $dark-blue;
+            top: 100%;
+            left: 0;
+            box-shadow: 4px 4px 20px rgba(112, 103, 211, 0.15);
+            padding: vw(20) vw(30);
+            font-size: vw(18);
+            line-height: vw(22);
+            font-family: $ff-nova;
+            font-weight: 700;
+            color: #fff;
+            border-radius: 10px;
+            opacity: 0;
+            padding: 0 vw(30);
+            max-height: 0;
+            transition: opacity 0.3s, max-height 0.3s, padding 0.3s;
+
+            &::after {
+                content: "";
+                position: absolute;
+                left: vw(10);
+                top: vw(-20);
+                border: vw(10) solid transparent;
+                border-bottom: vw(10) solid $dark-blue;
+            }
         }
     }
 

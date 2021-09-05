@@ -4,7 +4,7 @@
         <div class="task-preview__info">
             <div v-if="task.date" class="task-preview__prop">
                 <div class="task-preview__prop-name">Дата:</div>
-                <div class="task-preview__prop-value">{{ task.date }}</div>
+                <div class="task-preview__prop-value">{{ formatDate(task.date) }}</div>
             </div>
             <div v-if="task.status" class="task-preview__prop">
                 <div class="task-preview__prop-name">Статус:</div>
@@ -36,6 +36,29 @@
 export default {
     name: 'Header',
     methods: {
+        formatDate(string) {
+            if (!string) {
+                return '';
+            }
+
+            const monthNames = [
+                'Января',
+                'Февраля',
+                'Марта',
+                'Апреля',
+                'Мая',
+                'Июня',
+                'Июля',
+                'Августа',
+                'Сентября',
+                'Октября',
+                'Ноября',
+                'Декабря',
+            ];
+
+            const date = new Date(string);
+            return date.getDate()+ ' ' + monthNames[date.getMonth()].toLowerCase() + ' ' + date.getFullYear();
+        },
         pushRoute(task) {
             this.$router.push({ path: '/dashboard/supply', query: { taskId: task.id } })
         }

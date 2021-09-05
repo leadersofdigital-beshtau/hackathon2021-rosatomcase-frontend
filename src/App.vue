@@ -50,8 +50,7 @@
                     </div>
                 </main>
                 <footer class="dashboard__footer">
-                    © 2008–2021. Все права защищены. Государственная корпорация
-                    по атомной энергии «Росатом»
+                    © 2008–2021. Все права защищены
                 </footer>
             </div>
         </div>
@@ -153,7 +152,7 @@ export default {
 
     &__main {
         flex: 1;
-        padding: 99px 104px 99px 380px;
+        padding: 50px 104px 99px 380px;
     }
 
     &__container {

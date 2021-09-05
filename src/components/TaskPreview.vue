@@ -1,5 +1,5 @@
 <template>
-    <div class="task-preview">
+    <div v-on:click="pushRoute(task)" class="task-preview">
         <div class="task-preview__title">{{ task.title }}</div>
         <div class="task-preview__info">
             <div v-if="task.date" class="task-preview__prop">
@@ -20,14 +20,14 @@
             </div>
         </div>
         <div class="task-preview__results">
-            <router-link v-if="task.lettersSent" class="task-preview__result" to="/">
+            <div v-if="task.lettersSent" class="task-preview__result" to="/">
                 <div class="task-preview__result-name">Отправлено писем:</div>
                 <div class="task-preview__result-value">{{ task.lettersSent }}</div>
-            </router-link>
-            <router-link v-if="task.responses" class="task-preview__result" to="/">
+            </div>
+            <div v-if="task.responses" class="task-preview__result" to="/">
                 <div class="task-preview__result-name">Поступило откликов:</div>
                 <div class="task-preview__result-value">{{ task.responses }}</div>
-            </router-link>
+            </div>
         </div>
     </div>
 </template>
@@ -35,6 +35,11 @@
 <script>
 export default {
     name: 'Header',
+    methods: {
+        pushRoute(task) {
+            this.$router.push({ path: '/dashboard/supply', query: { taskId: task.id } })
+        }
+    },
     props: {
         task: {
             type: Object,
@@ -45,6 +50,9 @@ export default {
 
 <style lang="scss" scoped>
 .task-preview {
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
     height: 100%;
     padding: 16px;
     background: #FFFFFF;
@@ -72,7 +80,7 @@ export default {
         }
 
         &-name {
-            width: 82px;
+            min-width: 85px;
             font-style: normal;
             font-weight: 600;
             font-size: 18px;
@@ -107,7 +115,7 @@ export default {
 
         &-name {
             font-weight: 600;
-            font-size: 18px;
+            font-size: 16px;
             line-height: 22px;
             color: #3675B3;
             margin-right: 5px;

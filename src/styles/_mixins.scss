@@ -1,14 +1,13 @@
-
 @mixin font-face($font-family, $url, $weight, $style) {
-  @font-face {
-    font-family: "#{$font-family}";
-    src: url("../assets/fonts/ProximaNova/#{$url}.eot?") format("eot"),
-     url("../assets/fonts/ProximaNova/#{$url}.woff") format("woff"),
-     url("../assets/fonts/ProximaNova/#{$url}.ttf") format("typeof");
-    font-weight: #{$weight};
-    font-style: $style;
-    font-display: swap;
-  }
+    @font-face {
+        font-family: "#{$font-family}";
+        src: url("../assets/fonts/ProximaNova/#{$url}.eot?") format("eot"),
+            url("../assets/fonts/ProximaNova/#{$url}.woff") format("woff"),
+            url("../assets/fonts/ProximaNova/#{$url}.ttf") format("typeof");
+        font-weight: #{$weight};
+        font-style: $style;
+        font-display: swap;
+    }
 }
 
 @mixin base-button() {
@@ -19,5 +18,30 @@
 }
 
 @function vw($num) {
-  @return ($num * 100/ 1920) * 1vw;
+    @return ($num * 100/ 1920) * 1vw;
+}
+
+@mixin media($media) {
+    @if $media == xs {
+        @media (min-width: $xs-break) {
+            @content;
+        }
+    }
+    @if $media == sm {
+        @media (min-width: $sm-break) {
+            @content;
+        }
+    } @else if $media == md {
+        @media (min-width: $md-break) {
+            @content;
+        }
+    } @else if $media == lg {
+        @media (min-width: $lg-break) {
+            @content;
+        }
+    } @else if $media == xl {
+        @media (min-width: $xl-break) {
+            @content;
+        }
+    }
 }

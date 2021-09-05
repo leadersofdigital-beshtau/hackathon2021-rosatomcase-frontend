@@ -210,6 +210,8 @@ import { ref } from "vue";
 import { ru } from "date-fns/locale";
 import Datepicker from "vue3-datepicker";
 
+import baseApi from "../http/baseApi";
+
 import Vue3ChartJs from "@j-t-mcc/vue3-chartjs";
 
 export default {
@@ -277,51 +279,30 @@ export default {
             datepickerFormat: "dd.mm.yyyy",
             isSelectActive: false,
             selectedText: "За месяц",
-            tasks: [
-                {
-                    id: 1,
-                    title: "Оказание услуг по оценке оборудования",
-                    date: "01.08.2021",
-                    status: "В процессе",
-                    from: "Горячкина А. В.",
-                    project: "Обеспечение гидроэлектростанции",
-                    lettersSent: 5,
-                    responses: 2
-                },
-                {
-                    id: 2,
-                    title: "Оказание услуг по оценке оборудования",
-                    date: "01.08.2021",
-                    status: "В процессе",
-                    from: "Горячкина А. В.",
-                    project: "Обеспечение гидроэлектростанции",
-                    lettersSent: 10,
-                    responses: 2
-                },
-                {
-                    id: 3,
-                    title: "Оказание услуг по оценке оборудования",
-                    date: "01.08.2021",
-                    status: "В процессе",
-                    from: "Горячкина А. В.",
-                    project: "Обеспечение гидроэлектростанции",
-                    lettersSent: 24,
-                    responses: 0
-                },
-                {
-                    id: 4,
-                    title: "Оказание услуг по оценке оборудования",
-                    date: "01.08.2021",
-                    status: "В процессе",
-                    from: "Горячкина А. В.",
-                    project: "Обеспечение гидроэлектростанции",
-                    lettersSent: 24,
-                    responses: 0
-                }
-            ]
+            tasks: []
         };
     },
+    created() {
+        baseApi
+            .get("Catalog_ВнешниеЗадачи?$format=application/json")
+            .then(({ data }) => (this.format1cResponse(data.value)));
+        console.log(this.tasks);
+    },
     methods: {
+        format1cResponse(value) {
+            value.forEach(element => {
+                this.tasks.push({
+                    id: element.Ref_Key,
+                    title: element.Description,
+                    date: element.ДатаСоздания,
+                    status: element.Статус,
+                    from: element.Инициатор,
+                    project: element.ПроектЗакупки,
+                    lettersSent: Math.floor(Math.random() * 200),
+                    responses: Math.floor(Math.random() * 100)
+                });
+            });
+        },
         selectItem(text) {
             this.selectedText = text;
             this.isSelectActive = false;
@@ -351,9 +332,11 @@ export default {
     &__actions {
         display: flex;
         margin-bottom: 68px;
+        flex-wrap: wrap;
 
         &-item {
             margin-right: 30px;
+            margin-bottom: 30px;
 
             &:last-child {
                 margin-right: 0;

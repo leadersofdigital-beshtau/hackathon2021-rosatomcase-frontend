@@ -26,7 +26,7 @@ const routes = [
         component: Supply,
         meta: {
             key: 2,
-            title: "Поставщик"
+            title: "Поставщики"
         }
     },
     {
